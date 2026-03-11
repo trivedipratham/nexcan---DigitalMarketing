@@ -7,21 +7,24 @@ const cases = [
     strategy: "Facebook Ads Campaign",
     result: "3X Sales Increase",
     growth: "+312%",
-    detail: "Scaled from $50K to $200K monthly revenue through precision audience targeting and creative optimization.",
+    detail:
+      "Scaled from $50K to $200K monthly revenue through precision audience targeting and creative optimization.",
   },
   {
     industry: "SaaS Startup",
     strategy: "SEO + Content Marketing",
     result: "5X Organic Leads",
     growth: "+487%",
-    detail: "Built a content engine that generates 15,000+ monthly organic visits and 400+ qualified leads.",
+    detail:
+      "Built a content engine that generates 15,000+ monthly organic visits and 400+ qualified leads.",
   },
   {
     industry: "Healthcare Platform",
     strategy: "Multi-Channel Strategy",
     result: "2X Patient Acquisition",
     growth: "+215%",
-    detail: "Combined paid search, social proof, and email nurturing to double new patient signups in 6 months.",
+    detail:
+      "Combined paid search, social proof, and email nurturing to double new patient signups in 6 months.",
   },
 ];
 
@@ -35,11 +38,12 @@ const CaseStudiesSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <span className="text-primary text-xs font-display font-bold uppercase tracking-[0.2em] mb-4 block">
-            Case Studies
+          <span className="text-primary/80 text-sm font-display font-semibold uppercase tracking-[0.2em] mb-4 block">
+            Portfolio
           </span>
-          <h2 className="font-display font-extrabold text-4xl md:text-6xl uppercase tracking-tight">
-            Proven <span className="gradient-text">Results</span>
+          <h2 className="font-display font-bold text-4xl md:text-6xl tracking-tight text-white mb-6">
+            Check out our work.{" "}
+            <span className="gradient-text">Be blown away.</span>
           </h2>
         </motion.div>
 
@@ -57,7 +61,10 @@ const CaseStudiesSection = () => {
                 <span className="text-xs font-display font-bold uppercase tracking-wider text-muted-foreground">
                   {c.industry}
                 </span>
-                <ArrowUpRight size={16} className="text-muted-foreground group-hover:text-primary transition-colors" />
+                <ArrowUpRight
+                  size={16}
+                  className="text-muted-foreground group-hover:text-primary transition-colors"
+                />
               </div>
 
               {/* Visual graph placeholder */}
@@ -75,10 +82,18 @@ const CaseStudiesSection = () => {
                 ))}
               </div>
 
-              <span className="text-xs text-muted-foreground mb-2">{c.strategy}</span>
-              <h3 className="font-display font-bold text-xl uppercase mb-2">{c.result}</h3>
-              <span className="text-primary font-display font-extrabold text-3xl mb-4">{c.growth}</span>
-              <p className="text-sm text-muted-foreground leading-relaxed mt-auto">{c.detail}</p>
+              <span className="text-xs text-muted-foreground mb-2">
+                {c.strategy}
+              </span>
+              <h3 className="font-display font-bold text-xl text-white mb-2">
+                {c.result}
+              </h3>
+              <span className="text-primary font-display font-extrabold text-3xl mb-4">
+                {c.growth}
+              </span>
+              <p className="text-sm text-muted-foreground leading-relaxed mt-auto">
+                {c.detail}
+              </p>
 
               <div className="mt-6 flex items-center gap-2 text-primary text-xs font-display font-bold uppercase group-hover:gap-3 transition-all">
                 <BarChart3 size={14} />

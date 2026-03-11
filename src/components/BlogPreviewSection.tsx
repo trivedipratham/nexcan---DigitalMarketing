@@ -5,19 +5,22 @@ const posts = [
   {
     category: "SEO",
     title: "The Death of Traditional SEO: What Works in 2026",
-    excerpt: "Search algorithms have evolved beyond keywords. Here's how AI-driven content strategy is reshaping organic growth.",
+    excerpt:
+      "Search algorithms have evolved beyond keywords. Here's how AI-driven content strategy is reshaping organic growth.",
     readTime: "8 min",
   },
   {
     category: "Paid Media",
     title: "Why Your ROAS Is Lying to You (And What to Track Instead)",
-    excerpt: "Return on ad spend is a vanity metric in isolation. Discover the attribution models that reveal true campaign value.",
+    excerpt:
+      "Return on ad spend is a vanity metric in isolation. Discover the attribution models that reveal true campaign value.",
     readTime: "6 min",
   },
   {
     category: "Strategy",
     title: "From $0 to $1M ARR: The Marketing Playbook No One Talks About",
-    excerpt: "A stage-by-stage breakdown of the marketing systems that took three startups from launch to seven-figure revenue.",
+    excerpt:
+      "A stage-by-stage breakdown of the marketing systems that took three startups from launch to seven-figure revenue.",
     readTime: "12 min",
   },
 ];
@@ -33,11 +36,11 @@ const BlogPreviewSection = () => {
           viewport={{ once: true }}
         >
           <div>
-            <span className="text-primary text-xs font-display font-bold uppercase tracking-[0.2em] mb-4 block">
+            <span className="text-primary/80 text-sm font-display font-semibold uppercase tracking-[0.2em] mb-4 block">
               Insights
             </span>
-            <h2 className="font-display font-extrabold text-4xl md:text-6xl uppercase tracking-tight">
-              Latest <span className="gradient-text">Thinking</span>
+            <h2 className="font-display font-bold text-4xl md:text-6xl tracking-tight text-white mb-6">
+              Latest <span className="gradient-text">thinking.</span>
             </h2>
           </div>
         </motion.div>
@@ -56,9 +59,12 @@ const BlogPreviewSection = () => {
                 <span className="text-xs font-display font-bold uppercase tracking-wider text-primary">
                   {post.category}
                 </span>
-                <ArrowUpRight size={16} className="text-muted-foreground group-hover:text-primary transition-colors" />
+                <ArrowUpRight
+                  size={16}
+                  className="text-muted-foreground group-hover:text-primary transition-colors"
+                />
               </div>
-              <h3 className="font-display font-bold text-lg uppercase tracking-tight leading-tight mb-4">
+              <h3 className="font-display font-bold text-xl text-white tracking-tight leading-tight mb-4">
                 {post.title}
               </h3>
               <p className="text-sm text-muted-foreground leading-relaxed flex-1">

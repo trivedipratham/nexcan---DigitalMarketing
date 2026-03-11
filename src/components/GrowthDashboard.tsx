@@ -3,13 +3,51 @@ import { useRef, useState, useEffect } from "react";
 import { TrendingUp, Users, DollarSign, Award } from "lucide-react";
 
 const metrics = [
-  { icon: TrendingUp, value: 300, suffix: "%", prefix: "+", label: "Organic Traffic", color: "text-primary" },
-  { icon: Users, value: 5, suffix: "X", prefix: "", label: "Lead Growth", color: "text-neon-violet" },
-  { icon: DollarSign, value: 2, suffix: "X", prefix: "", label: "Revenue Increase", color: "text-neon-blue" },
-  { icon: Award, value: 120, suffix: "+", prefix: "", label: "Brands Scaled", color: "text-primary" },
+  {
+    icon: TrendingUp,
+    value: 300,
+    suffix: "%",
+    prefix: "+",
+    label: "Organic Traffic",
+    color: "text-primary",
+  },
+  {
+    icon: Users,
+    value: 5,
+    suffix: "X",
+    prefix: "",
+    label: "Lead Growth",
+    color: "text-neon-violet",
+  },
+  {
+    icon: DollarSign,
+    value: 2,
+    suffix: "X",
+    prefix: "",
+    label: "Revenue Increase",
+    color: "text-neon-blue",
+  },
+  {
+    icon: Award,
+    value: 120,
+    suffix: "+",
+    prefix: "",
+    label: "Brands Scaled",
+    color: "text-primary",
+  },
 ];
 
-const AnimatedCounter = ({ value, suffix, prefix, inView }: { value: number; suffix: string; prefix: string; inView: boolean }) => {
+const AnimatedCounter = ({
+  value,
+  suffix,
+  prefix,
+  inView,
+}: {
+  value: number;
+  suffix: string;
+  prefix: string;
+  inView: boolean;
+}) => {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
@@ -33,7 +71,9 @@ const AnimatedCounter = ({ value, suffix, prefix, inView }: { value: number; suf
 
   return (
     <span className="font-display font-extrabold text-4xl md:text-5xl">
-      {prefix}{count}{suffix}
+      {prefix}
+      {count}
+      {suffix}
     </span>
   );
 };
@@ -59,11 +99,11 @@ const GrowthDashboard = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <span className="text-primary text-xs font-display font-bold uppercase tracking-[0.2em] mb-4 block">
+          <span className="text-primary/80 text-sm font-display font-semibold uppercase tracking-[0.2em] mb-4 block">
             Results
           </span>
-          <h2 className="font-display font-extrabold text-4xl md:text-6xl uppercase tracking-tight">
-            Growth <span className="gradient-text">Dashboard</span>
+          <h2 className="font-display font-bold text-4xl md:text-6xl tracking-tight text-white mb-6">
+            Growth <span className="gradient-text">metrics.</span>
           </h2>
         </motion.div>
 
@@ -81,7 +121,9 @@ const GrowthDashboard = () => {
               <div className="w-3 h-3 rounded-full bg-destructive/60" />
               <div className="w-3 h-3 rounded-full bg-accent/60" />
               <div className="w-3 h-3 rounded-full bg-primary/60" />
-              <span className="text-xs text-muted-foreground ml-3 font-mono">live-analytics.nexus</span>
+              <span className="text-xs text-muted-foreground ml-3 font-mono">
+                live-analytics.nexus
+              </span>
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 p-4">
@@ -98,14 +140,23 @@ const GrowthDashboard = () => {
                     <metric.icon size={18} className={metric.color} />
                   </div>
                   <div className={metric.color}>
-                    <AnimatedCounter value={metric.value} suffix={metric.suffix} prefix={metric.prefix} inView={inView} />
+                    <AnimatedCounter
+                      value={metric.value}
+                      suffix={metric.suffix}
+                      prefix={metric.prefix}
+                      inView={inView}
+                    />
                   </div>
-                  <p className="text-xs text-muted-foreground mt-2 uppercase tracking-wider">{metric.label}</p>
+                  <p className="text-xs text-muted-foreground mt-2 uppercase tracking-wider">
+                    {metric.label}
+                  </p>
                   {/* Glow on complete */}
                   {scanComplete && (
                     <motion.div
                       className="absolute inset-0 rounded-xl"
-                      style={{ boxShadow: `0 0 40px -10px hsl(var(--primary) / 0.3)` }}
+                      style={{
+                        boxShadow: `0 0 40px -10px hsl(var(--primary) / 0.3)`,
+                      }}
                       initial={{ opacity: 0 }}
                       animate={{ opacity: [0, 1, 0] }}
                       transition={{ duration: 1.5 }}

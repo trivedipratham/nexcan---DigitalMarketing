@@ -14,8 +14,9 @@ export default {
     },
     extend: {
       fontFamily: {
-        display: ["Syne", "sans-serif"],
-        body: ["Inter", "sans-serif"],
+        heading: ['"Archivo Black"', 'sans-serif'],
+        body: ['"Inter"', 'sans-serif'],
+        emphasis: ['"Lora"', 'serif'],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -23,6 +24,19 @@ export default {
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
+        navy: {
+          DEFAULT: "#0A1128",
+          light: "#121D3A",
+          dark: "#060B1A",
+        },
+        gold: {
+          DEFAULT: "#FFC107",
+          dark: "#E5AC00",
+          light: "#FFD54F",
+        },
+        slate: {
+          custom: "#A0AEC0",
+        },
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
@@ -61,10 +75,6 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
-        "glass-border": "hsl(var(--glass-border))",
-        "neon-green": "hsl(var(--neon-green))",
-        "neon-violet": "hsl(var(--neon-violet))",
-        "neon-blue": "hsl(var(--neon-blue))",
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -80,36 +90,10 @@ export default {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
-        "pulse-glow": {
-          "0%, 100%": { opacity: "0.4" },
-          "50%": { opacity: "1" },
-        },
-        "float": {
-          "0%, 100%": { transform: "translateY(0px)" },
-          "50%": { transform: "translateY(-10px)" },
-        },
-        "scan-line": {
-          "0%": { transform: "translateX(-100%)" },
-          "100%": { transform: "translateX(100%)" },
-        },
-        "morph": {
-          "0%, 100%": { borderRadius: "60% 40% 30% 70%/60% 30% 70% 40%" },
-          "50%": { borderRadius: "30% 60% 70% 40%/50% 60% 30% 60%" },
-        },
-        "counter-tick": {
-          "0%": { transform: "scaleY(0.8)", opacity: "0.5" },
-          "50%": { transform: "scaleY(1.05)" },
-          "100%": { transform: "scaleY(1)", opacity: "1" },
-        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        "pulse-glow": "pulse-glow 3s ease-in-out infinite",
-        "float": "float 6s ease-in-out infinite",
-        "scan-line": "scan-line 2s ease-in-out",
-        "morph": "morph 15s ease-in-out infinite",
-        "counter-tick": "counter-tick 0.15s ease-out",
       },
     },
   },

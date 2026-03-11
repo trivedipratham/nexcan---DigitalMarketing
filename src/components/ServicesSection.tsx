@@ -6,31 +6,36 @@ const services = [
   {
     icon: Search,
     title: "SEO Growth Engine",
-    description: "Dominate search rankings with our AI-powered SEO strategies. Technical audits, content optimization, and link building at scale.",
+    description:
+      "Dominate search rankings with our AI-powered SEO strategies. Technical audits, content optimization, and link building at scale.",
     metrics: "+300% organic traffic avg.",
   },
   {
     icon: Share2,
     title: "Social Media Growth",
-    description: "Build communities that convert. Strategic content, influencer partnerships, and paid social amplification across all platforms.",
+    description:
+      "Build communities that convert. Strategic content, influencer partnerships, and paid social amplification across all platforms.",
     metrics: "5X engagement increase",
   },
   {
     icon: Target,
     title: "Performance Advertising",
-    description: "Precision-targeted campaigns across Google, Meta, and programmatic networks. Every dollar tracked, optimized, and scaled.",
+    description:
+      "Precision-targeted campaigns across Google, Meta, and programmatic networks. Every dollar tracked, optimized, and scaled.",
     metrics: "2.5X ROAS average",
   },
   {
     icon: FileText,
     title: "Content Marketing",
-    description: "Data-driven content that ranks, converts, and establishes authority. Blog posts, whitepapers, video, and interactive media.",
+    description:
+      "Data-driven content that ranks, converts, and establishes authority. Blog posts, whitepapers, video, and interactive media.",
     metrics: "4X content ROI",
   },
   {
     icon: Mail,
     title: "Email Automation",
-    description: "Lifecycle marketing that nurtures leads on autopilot. Smart segmentation, A/B testing, and behavioral triggers.",
+    description:
+      "Lifecycle marketing that nurtures leads on autopilot. Smart segmentation, A/B testing, and behavioral triggers.",
     metrics: "45% open rate avg.",
   },
 ];
@@ -48,11 +53,12 @@ const ServicesSection = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <span className="text-primary text-xs font-display font-bold uppercase tracking-[0.2em] mb-4 block">
-            Services
+          <span className="text-primary/80 text-sm font-display font-semibold uppercase tracking-[0.2em] mb-4 block">
+            Capabilities
           </span>
-          <h2 className="font-display font-extrabold text-4xl md:text-6xl uppercase tracking-tight">
-            What We <span className="gradient-text">Build</span>
+          <h2 className="font-display font-bold text-4xl md:text-6xl tracking-tight text-white mb-6">
+            Everything your business needs to{" "}
+            <span className="gradient-text">scale</span>
           </h2>
         </motion.div>
 
@@ -74,7 +80,8 @@ const ServicesSection = () => {
                 <motion.div
                   className="absolute inset-0 opacity-5"
                   style={{
-                    background: "radial-gradient(circle at 50% 50%, hsl(var(--primary)), transparent 70%)",
+                    background:
+                      "radial-gradient(circle at 50% 50%, hsl(var(--primary)), transparent 70%)",
                   }}
                   layoutId="service-glow"
                   transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
@@ -84,7 +91,7 @@ const ServicesSection = () => {
                 <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-6">
                   <service.icon size={22} className="text-primary" />
                 </div>
-                <h3 className="font-display font-bold text-xl uppercase tracking-tight mb-3">
+                <h3 className="font-display font-bold text-xl tracking-tight mb-3 text-white">
                   {service.title}
                 </h3>
                 <p className="text-muted-foreground text-sm leading-relaxed mb-4">
