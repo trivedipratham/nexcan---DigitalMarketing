@@ -1,165 +1,244 @@
-import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ArrowRight, Play } from "lucide-react";
+import { ArrowRight, ChevronDown } from "lucide-react";
+import DashboardMockup from "./DashboardMockup";
+
+const ScrollBadge = () => (
+  <div className="absolute bottom-16 left-8 md:bottom-24 md:left-12 w-20 h-20 md:w-28 md:h-28 hidden md:flex items-center justify-center">
+    <div className="relative w-full h-full animate-[spin_8s_linear_infinite]">
+      <svg viewBox="0 0 100 100" className="w-full h-full">
+        <defs>
+          <path
+            id="circlePathHero"
+            d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0"
+          />
+        </defs>
+        <text className="fill-muted-foreground text-[12px] font-body uppercase tracking-[0.25em]">
+          <textPath href="#circlePathHero">
+            SCROLL FOR MORE • SCROLL FOR MORE •{" "}
+          </textPath>
+        </text>
+      </svg>
+    </div>
+    <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+      <ChevronDown className="text-muted-foreground" size={24} />
+    </div>
+  </div>
+);
+
+const WaveDivider = () => (
+  <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-[0] z-20 h-24 md:h-36 pointer-events-none select-none">
+    <div
+      className="absolute bottom-0 w-[200%] h-full flex"
+      style={{
+        willChange: "transform",
+        animation: "wave-move 12s linear infinite",
+        transform: "translate3d(0, 0, 0)",
+      }}
+    >
+      <svg
+        className="w-full h-full"
+        viewBox="0 0 2880 120"
+        preserveAspectRatio="none"
+      >
+        <defs>
+          <linearGradient id="wave_grad_main" x1="0" x2="0" y1="0" y2="1">
+            <stop offset="0%" stopColor="#3B82F6" stopOpacity="0.4" />
+            <stop offset="90%" stopColor="#0B0F19" stopOpacity="1" />
+          </linearGradient>
+          <linearGradient id="wave_grad_back" x1="0" x2="0" y1="0" y2="1">
+            <stop offset="0%" stopColor="#2563EB" stopOpacity="0.2" />
+            <stop offset="90%" stopColor="#0B0F19" stopOpacity="1" />
+          </linearGradient>
+        </defs>
+
+        {/* Back Wave - Tileable */}
+        <path
+          d="M0 80 Q 360 30 720 80 T 1440 80 T 2160 80 T 2880 80 V 120 H 0 Z"
+          fill="url(#wave_grad_back)"
+          transform="translate(0, 10)"
+        />
+        {/* Front Wave - Tileable */}
+        <path
+          d="M0 70 Q 360 20 720 70 T 1440 70 T 2160 70 T 2880 70 V 120 H 0 Z"
+          fill="url(#wave_grad_main)"
+        />
+      </svg>
+    </div>
+
+    <style>{`
+      @keyframes wave-move {
+        from { transform: translate3d(0, 0, 0); }
+        to { transform: translate3d(-50%, 0, 0); }
+      }
+    `}</style>
+  </div>
+);
 
 const HeroSection = () => {
+  const words = [
+    "drive more leads.",
+    "boost your ROI.",
+    "grow your brand.",
+    "turn visitors into customers.",
+  ];
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIndex((prev) => (prev + 1) % words.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
-      {/* Deep Navy Background with Edge Glow */}
-      <div className="absolute inset-0 z-0 bg-background">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_50%,rgba(0,0,0,0.6)_100%)] pointer-events-none" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-900/20 via-transparent to-transparent opacity-60" />
-      </div>
-
-      {/* Thin Vertical Grid columns */}
-      <div className="absolute inset-0 z-0 flex justify-between px-[5%] opacity-20 pointer-events-none">
-        {[...Array(5)].map((_, i) => (
-          <div key={i} className="h-full w-px bg-white/20" />
-        ))}
-      </div>
-
-      <div className="section-container relative z-10 text-center max-w-5xl">
+    <section className="relative min-h-screen flex flex-col items-center justify-center px-6 overflow-hidden pt-36 pb-32">
+      {/* Background */}
+      <div className="absolute inset-0 z-0 bg-[#0B0F19] overflow-hidden">
+        {/* Cinematic Motion Background (Reliable Alternative to Video) */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
+          initial={{ scale: 1.1, opacity: 0 }}
+          animate={{ scale: 1, opacity: 0.25 }}
+          transition={{ duration: 2, ease: "easeOut" }}
+          className="absolute inset-0"
         >
-          <div className="inline-flex items-center gap-2 glass-card px-4 py-2 mb-8 text-xs font-medium text-primary">
-            <span className="w-2 h-2 rounded-full bg-primary animate-pulse-glow" />
-            NEXT-GEN DIGITAL MARKETING
-          </div>
+          <img
+            src="https://images.unsplash.com/photo-1451187530220-4e2bd78f7ad6?auto=format&fit=crop&q=80&w=1600"
+            alt="Hero Background"
+            className="w-full h-full object-cover filter grayscale"
+          />
+          {/* Animated Overlay for Video-like feel */}
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0B0F19] via-transparent to-[#0B0F19] opacity-80" />
         </motion.div>
 
+        {/* Digital Grid & Pips */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_2px_2px,rgba(255,255,255,0.05)_1px,transparent_0)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_at_center,black,transparent_80%)]" />
+
+        {/* Dynamic floating mesh gradient orbs (Optimized for performance) */}
+        <div className="absolute top-0 w-full h-full opacity-60">
+          <motion.div
+            className="absolute top-[-20%] left-[-10%] w-[60%] h-[60%] pointer-events-none bg-[radial-gradient(circle_at_center,_rgba(109,40,217,0.3)_0%,_transparent_60%)]"
+            style={{ willChange: "transform" }}
+            animate={{ x: [0, 40, 0], y: [0, 30, 0] }}
+            transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+          />
+          <motion.div
+            className="absolute top-[10%] right-[-10%] w-[50%] h-[70%] pointer-events-none bg-[radial-gradient(circle_at_center,_rgba(37,99,235,0.3)_0%,_transparent_60%)]"
+            style={{ willChange: "transform" }}
+            animate={{ x: [0, -40, 0], y: [0, -20, 0] }}
+            transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
+          />
+          <motion.div
+            className="absolute bottom-[-10%] left-[20%] w-[40%] h-[40%] pointer-events-none bg-[radial-gradient(circle_at_center,_rgba(234,179,8,0.15)_0%,_transparent_60%)]"
+            style={{ willChange: "transform" }}
+            animate={{ x: [0, 20, 0], y: [0, -30, 0] }}
+            transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
+          />
+        </div>
+
+        {/* Fine dotted texture overlay */}
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wMykiLz48L3N2Zz4=')] [mask-image:linear-gradient(to_bottom,#000_20%,transparent_100%)] pointer-events-none" />
+      </div>
+
+      <div className="relative z-10 max-w-5xl mx-auto text-center w-full">
         <motion.h1
-          className="font-display font-bold text-5xl md:text-7xl lg:text-[5.5rem] leading-[1.1] tracking-tight mb-6 text-foreground drop-shadow-2xl"
+          className="font-display font-bold text-3xl md:text-6xl lg:text-6xl leading-[1.15] tracking-tight mb-6 text-foreground"
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.15 }}
+          transition={{ duration: 0.8 }}
         >
-          Business Facelifts <span className="text-primary">Happen Here</span>
+          Digital Growth{" "}
+          <span className="text-yellow-400 font-serif">Happens Here</span>
         </motion.h1>
 
         <motion.div
-          className="text-foreground text-xl md:text-3xl max-w-3xl mx-auto mb-16 font-light flex flex-wrap justify-center items-center gap-x-2 drop-shadow-md"
-          initial={{ opacity: 0, y: 30 }}
+          className="text-muted-foreground text-lg md:text-2xl font-body mb-10 flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2"
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <span>Web solutions that</span>
-          <span className="font-serif italic relative">
-            delight your customers.
+          <span>Nexcan is a results-focused digital marketing agency that</span>
+          <span className="font-serif relative inline-flex items-center justify-center sm:justify-start min-w-[200px] sm:min-w-[240px] text-foreground">
+            <AnimatePresence mode="wait">
+              <motion.span
+                key={words[index]}
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -15 }}
+                transition={{ duration: 0.4 }}
+                className="whitespace-nowrap font-medium"
+              >
+                {words[index]}
+              </motion.span>
+            </AnimatePresence>
             <svg
-              className="absolute -bottom-2 left-0 w-full h-3 text-primary stroke-current overflow-visible"
-              viewBox="0 0 200 10"
-              preserveAspectRatio="none"
+              className="absolute -bottom-3 left-1/2 sm:left-0 -translate-x-1/2 sm:translate-x-0 w-[110%] sm:w-[240px]"
+              viewBox="0 0 300 18"
               fill="none"
-              strokeWidth="2"
-              strokeLinecap="round"
+              preserveAspectRatio="none"
             >
-              <path d="M 5,5 Q 50,8 100,5 T 195,5" />
+              {/* Base thick stroke */}
+              <path
+                d="M25 12 Q 100 5, 200 9 T 255 10"
+                stroke="#FBBF24"
+                strokeWidth="3"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              {/* Middle messy stroke */}
+              <path
+                d="M60 15 Q 150 8, 240 14 Q 260 15, 280 13"
+                stroke="#F59E0B"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              {/* Bottom finishing thin stroke */}
+              <path
+                d="M90 17 Q 160 14, 230 16"
+                stroke="#D97706"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
             </svg>
           </span>
         </motion.div>
 
-        <motion.div
-          className="flex flex-col sm:flex-row items-center justify-center gap-6"
+        {/* <motion.div
+          className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-20"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.45 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
         >
           <Link
             to="/contact"
-            className="group relative inline-flex items-center justify-center px-8 py-3.5 text-sm font-semibold text-white transition-all duration-300 bg-transparent border border-white/30 rounded-full hover:border-primary hover:text-primary overflow-hidden"
+            className="inline-flex items-center gap-2 bg-yellow-400 text-black px-8 py-4 rounded-full font-body font-bold text-sm hover:bg-yellow-500 hover:scale-105 transition-all duration-300"
           >
-            <span className="relative z-10 flex items-center gap-2">
-              Get Started
-              <ArrowRight
-                size={16}
-                className="transition-transform group-hover:translate-x-1"
-              />
-            </span>
+            Get Started <ArrowRight size={16} />
           </Link>
-        </motion.div>
+          <Link
+            to="/case-studies"
+            className="inline-flex items-center gap-2 border-2 border-border text-foreground px-8 py-4 rounded-full font-body font-medium text-sm hover:border-yellow-400 transition-colors duration-300"
+          >
+            View Case Studies
+          </Link>
+        </motion.div> */}
 
-        {/* Animated Browser Mockup (Digital Marketing Video/Carousel Style) */}
+        {/* Dashboard Frame Mockup */}
         <motion.div
-          className="mt-20 relative mx-auto w-full max-w-5xl rounded-[2rem] border-[8px] border-secondary/80 bg-secondary shadow-2xl overflow-hidden drop-shadow-[0_20px_50px_rgba(41,152,255,0.15)]"
-          initial={{ opacity: 0, y: 60 }}
+          className="relative mx-auto w-full max-w-5xl"
+          initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.6, ease: "easeOut" }}
-          style={{ transform: "perspective(1200px) rotateX(2deg)" }}
+          transition={{ duration: 1, delay: 0.6 }}
         >
-          {/* Browser Top Bar */}
-          <div className="flex h-12 w-full items-center gap-2 bg-secondary/90 px-4">
-            <div className="h-3 w-3 rounded-full bg-red-500/80" />
-            <div className="h-3 w-3 rounded-full bg-yellow-500/80" />
-            <div className="h-3 w-3 rounded-full bg-green-500/80" />
-            <div className="mx-auto flex h-6 w-1/3 items-center justify-center rounded-md bg-background/50 text-[10px] text-muted-foreground/80 font-mono">
-              analytics.nexcan.dev
-            </div>
-          </div>
-
-          {/* Video / Animated Dashboard Content Area */}
-          <div className="relative aspect-[16/9] w-full bg-background overflow-hidden">
-            {/* We use an animated wrapper to slide multiple digital marketing dashboards smoothly */}
-            <div className="absolute inset-0 flex w-[300%] animate-carousel">
-              {/* Slide 1 - Data Analytics */}
-              <div className="relative w-full h-full">
-                <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent z-10" />
-                <img
-                  src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2426&ixlib=rb-4.0.3"
-                  alt="Digital Marketing Analytics Dashboard"
-                  className="w-full h-full object-cover opacity-80"
-                />
-                <div className="absolute bottom-10 left-10 z-20">
-                  <h3 className="text-3xl font-display font-bold text-white shadow-black drop-shadow-lg">
-                    Real-Time Data Tracking
-                  </h3>
-                  <p className="text-primary font-medium">
-                    Maximize your ROI instantly.
-                  </p>
-                </div>
-              </div>
-              {/* Slide 2 - Campaign Scaling */}
-              <div className="relative w-full h-full">
-                <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent z-10" />
-                <img
-                  src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3"
-                  alt="Campaign Scaling"
-                  className="w-full h-full object-cover opacity-80"
-                />
-                <div className="absolute bottom-10 left-10 z-20">
-                  <h3 className="text-3xl font-display font-bold text-white shadow-black drop-shadow-lg">
-                    Omnichannel Campaigns
-                  </h3>
-                  <p className="text-primary font-medium">
-                    Dominate platforms where it matters.
-                  </p>
-                </div>
-              </div>
-              {/* Slide 3 - Strategic Planning */}
-              <div className="relative w-full h-full">
-                <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent z-10" />
-                <img
-                  src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3"
-                  alt="Strategic Planning"
-                  className="w-full h-full object-cover opacity-80"
-                />
-                <div className="absolute bottom-10 left-10 z-20">
-                  <h3 className="text-3xl font-display font-bold text-white shadow-black drop-shadow-lg">
-                    Data-Driven Strategy
-                  </h3>
-                  <p className="text-primary font-medium">
-                    Conversion optimized funnels.
-                  </p>
-                </div>
-              </div>
-            </div>
-            {/* Optional Overlay scanning line (Neon style) */}
-            <div className="absolute top-0 left-0 w-full h-0.5 bg-primary/50 shadow-[0_0_8px_hsl(var(--primary))] animate-[scan-line_4s_linear_infinite]" />
-          </div>
+          <DashboardMockup />
         </motion.div>
       </div>
+
+      <ScrollBadge />
+      <WaveDivider />
     </section>
   );
 };

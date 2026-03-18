@@ -6,14 +6,26 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import WhatsAppWidget from "@/components/WhatsAppWidget";
+import SmoothScroll from "@/components/SmoothScroll";
 import Home from "@/pages/Home";
 import Services from "@/pages/Services";
 import About from "@/pages/About";
 import Contact from "@/pages/Contact";
 import NotFound from "@/pages/NotFound";
+import CaseStudies from "@/pages/CaseStudies";
+import Pricing from "@/pages/Pricing";
+import Blog from "@/pages/Blog";
+import BlogPost from "@/pages/BlogPost";
+import Privacy from "@/pages/Privacy";
 
 const queryClient = new QueryClient();
+
+const pageTransition = {
+  initial: { opacity: 0, y: 20, filter: "blur(10px)" },
+  animate: { opacity: 1, y: 0, filter: "blur(0px)" },
+  exit: { opacity: 0, y: -20, filter: "blur(10px)" },
+  transition: { duration: 0.6, ease: "easeInOut" }
+};
 
 const AnimatedRoutes = () => {
   const location = useLocation();
@@ -21,15 +33,21 @@ const AnimatedRoutes = () => {
     <AnimatePresence mode="wait">
       <motion.div
         key={location.pathname}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        transition={{ duration: 0.3 }}
+        initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
+        animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+        exit={{ opacity: 0, y: -20, filter: "blur(10px)" }}
+        transition={{ duration: 0.6 }}
+        className="flex flex-col flex-1"
       >
         <Routes location={location}>
           <Route path="/" element={<Home />} />
           <Route path="/services" element={<Services />} />
           <Route path="/about" element={<About />} />
+          <Route path="/case-studies" element={<CaseStudies />} />
+          <Route path="/pricing" element={<Pricing />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/:id" element={<BlogPost />} />
+          <Route path="/privacy" element={<Privacy />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
@@ -44,15 +62,16 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <SmoothScroll />
         <Header />
-        <main className="pt-16">
+        <main className="flex flex-col min-h-screen overflow-x-hidden relative">
           <AnimatedRoutes />
         </main>
         <Footer />
-        <WhatsAppWidget />
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
 );
 
 export default App;
+

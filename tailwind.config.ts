@@ -17,6 +17,10 @@ export default {
         heading: ['"Archivo Black"', 'sans-serif'],
         body: ['"Inter"', 'sans-serif'],
         emphasis: ['"Lora"', 'serif'],
+        display: ['"Archivo Black"', 'sans-serif'],
+        tech: ['"Syncopate"', 'sans-serif'],
+        serif: ['"Lora"', 'serif'],
+        mono: ['"Syncopate"', 'monospace'],
       },
       colors: {
         border: "hsl(var(--border))",
