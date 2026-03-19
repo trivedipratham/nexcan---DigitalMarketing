@@ -134,7 +134,7 @@ const Services = () => {
     <div className="relative z-10 w-full font-body">
       
       {/* ── CINEMATIC ARCHITECTURAL HERO ── */}
-      <section className="relative min-h-screen w-full flex items-center justify-center pt-32 pb-20 px-6 md:px-12 lg:px-24 overflow-hidden">
+      <section className="relative min-h-screen w-full flex items-center justify-center pt-28 pb-12 sm:pb-20 px-4 sm:px-6 md:px-12 lg:px-24 overflow-hidden">
         
         {/* Background Layer: System Pips & Kinetic Watermark */}
         <div className="absolute inset-0 z-0 pointer-events-none select-none overflow-hidden">
@@ -183,34 +183,34 @@ const Services = () => {
           ))}
         </div>
 
-        <div className="relative z-20 max-w-[1450px] w-full mx-auto flex flex-col lg:flex-row items-center justify-between gap-16 lg:gap-24">
+        <div className="relative z-20 max-w-[1450px] w-full mx-auto flex flex-col lg:flex-row items-center justify-between gap-10 sm:gap-16 lg:gap-24">
           
           {/* LEFT: THE NARRATIVE ARC */}
-          <div className="lg:w-[50%] space-y-10 text-left">
+          <div className="lg:w-[50%] space-y-6 sm:space-y-10 text-left">
             <ScrollReveal>
               <div className="flex flex-col space-y-6">
-                <div className="inline-flex items-center gap-4 bg-white/[0.03] border border-white/5 py-2 px-5 rounded-full backdrop-blur-md w-fit">
-                   <div className="w-2 h-2 rounded-full bg-yellow-400 animate-pulse" />
-                   <span className="text-yellow-400 font-mono text-[11px] uppercase tracking-[0.5em] font-black">Nexcan Insight: Full-Service Digital Marketing</span>
+                <div className="inline-flex items-center gap-2 sm:gap-4 bg-white/[0.03] border border-white/5 py-2 px-3 sm:px-5 rounded-full backdrop-blur-md w-fit">
+                   <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-yellow-400 animate-pulse shrink-0" />
+                   <span className="text-yellow-400 font-mono text-[8px] sm:text-[11px] uppercase tracking-[0.3em] sm:tracking-[0.5em] font-black">Full-Service Digital Marketing</span>
                 </div>
                 
-                <h1 className="text-6xl md:text-8xl lg:text-[110px] font-display font-black tracking-tighter leading-[0.85] uppercase pr-10">
+                <h1 className="text-[13vw] sm:text-6xl md:text-8xl lg:text-[110px] font-display font-black tracking-tighter leading-[0.85] uppercase pr-2 sm:pr-10">
                   GROWTH <br />
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-white to-white/40">PLANS.</span>
                 </h1>
               </div>
 
-              <div className="relative pl-10 border-l border-white/10 mt-12">
-                <p className="text-zinc-400 text-xl lg:text-2xl font-light leading-relaxed max-w-xl">
+              <div className="relative pl-4 sm:pl-10 border-l border-white/10 mt-6 sm:mt-12">
+                <p className="text-zinc-400 text-base sm:text-xl lg:text-2xl font-light leading-relaxed max-w-xl">
                    Smart <span className="text-white font-medium">marketing systems</span> designed to help your investment grow.
                 </p>
-                <div className="absolute top-0 left-[-2px] w-1 h-12 bg-yellow-400" />
+                <div className="absolute top-0 left-[-2px] w-1 h-8 sm:h-12 bg-yellow-400" />
               </div>
 
-              <div className="pt-12 flex flex-wrap gap-8 items-center">
-                 <Link to="/contact" className="group relative px-10 py-5 bg-yellow-400 text-black font-display text-xs font-black uppercase tracking-[0.4em] overflow-hidden rounded-2xl">
-                    <span className="relative z-10 flex items-center gap-3">
-                       Deploy Strategy <ArrowUpRight size={18} />
+              <div className="pt-6 sm:pt-12 flex flex-wrap gap-4 sm:gap-8 items-center">
+                 <Link to="/contact" className="group relative px-6 sm:px-10 py-4 sm:py-5 bg-yellow-400 text-black font-display text-[10px] sm:text-xs font-black uppercase tracking-[0.3em] sm:tracking-[0.4em] overflow-hidden rounded-xl sm:rounded-2xl">
+                    <span className="relative z-10 flex items-center gap-2 sm:gap-3">
+                       Deploy Strategy <ArrowUpRight size={16} />
                     </span>
                     <div className="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
                  </Link>
@@ -221,14 +221,14 @@ const Services = () => {
           {/* RIGHT: THE 3D VISUAL ELEMENT */}
           <div className="lg:w-[45%] relative">
             <ScrollReveal delay={0.3}>
-              <div className="relative aspect-square w-full max-w-[600px] mx-auto">
+              <div className="relative aspect-square w-full max-w-[320px] sm:max-w-[450px] md:max-w-[600px] mx-auto">
                 {/* Architectural Rings */}
                 {[...Array(3)].map((_, i) => (
                   <motion.div
                     key={i}
                     animate={{ rotate: i % 2 === 0 ? 360 : -360 }}
                     transition={{ duration: 20 + i * 10, repeat: Infinity, ease: "linear" }}
-                    className="absolute inset-0 border border-white/[0.05] rounded-full"
+                    className="absolute inset-0 border border-white/[0.05] rounded-full hidden sm:block"
                     style={{ margin: `${i * 12}%`, borderStyle: i === 1 ? 'dashed' : 'solid' }}
                   />
                 ))}
@@ -238,7 +238,7 @@ const Services = () => {
                   <motion.div 
                     animate={{ y: [0, -20, 0] }}
                     transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-                    className="relative rounded-[4rem] overflow-hidden group shadow-[0_0_100px_rgba(250,204,21,0.05)]"
+                    className="relative rounded-2xl sm:rounded-[3rem] md:rounded-[4rem] overflow-hidden group shadow-[0_0_100px_rgba(250,204,21,0.05)]"
                   >
                     <img 
                       src={growth} 
@@ -248,12 +248,12 @@ const Services = () => {
                     <div className="absolute inset-0 bg-gradient-to-tr from-yellow-400/20 to-transparent opacity-40" />
                     
                     {/* Floating HUD Elements */}
-                    <div className="absolute top-8 left-8 p-4 bg-black/60 backdrop-blur-xl border border-white/10 rounded-2xl space-y-2">
-                       <div className="flex items-center gap-2">
-                          <Activity size={12} className="text-yellow-400" />
-                          <span className="text-[10px] font-mono text-white/80 tracking-widest uppercase">Live Activity</span>
+                    <div className="absolute top-3 left-3 sm:top-8 sm:left-8 p-2 sm:p-4 bg-black/60 backdrop-blur-xl border border-white/10 rounded-xl sm:rounded-2xl space-y-1 sm:space-y-2">
+                       <div className="flex items-center gap-1.5 sm:gap-2">
+                          <Activity size={10} className="text-yellow-400 sm:w-3 sm:h-3" />
+                          <span className="text-[8px] sm:text-[10px] font-mono text-white/80 tracking-widest uppercase">Live Activity</span>
                        </div>
-                       <div className="h-1 w-24 bg-white/5 rounded-full overflow-hidden">
+                       <div className="h-0.5 sm:h-1 w-16 sm:w-24 bg-white/5 rounded-full overflow-hidden">
                           <motion.div 
                             animate={{ x: ["-100%", "100%"] }}
                             transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
@@ -262,26 +262,26 @@ const Services = () => {
                        </div>
                     </div>
 
-                    <div className="absolute bottom-8 right-8 p-4 bg-black/60 backdrop-blur-xl border border-white/10 rounded-2xl text-right">
-                       <p className="text-[24px] font-display font-black text-white leading-none">99.9%</p>
-                       <p className="text-[10px] font-mono text-zinc-300 uppercase tracking-widest mt-1">Uptime_Efficiency</p>
+                    <div className="absolute bottom-3 right-3 sm:bottom-8 sm:right-8 p-2 sm:p-4 bg-black/60 backdrop-blur-xl border border-white/10 rounded-xl sm:rounded-2xl text-right">
+                       <p className="text-sm sm:text-[24px] font-display font-black text-white leading-none">99.9%</p>
+                       <p className="text-[8px] sm:text-[10px] font-mono text-zinc-300 uppercase tracking-widest mt-0.5 sm:mt-1">Uptime_Efficiency</p>
                     </div>
                   </motion.div>
                 </div>
 
                 {/* Satellite Nodes */}
-                <div className="absolute inset-0 pointer-events-none">
+                <div className="absolute inset-0 pointer-events-none hidden sm:block">
                    {[Search, Target, Share2].map((Icon, i) => (
                       <motion.div
                         key={i}
                         animate={{ 
-                          x: Math.cos((i * 120) * (Math.PI / 180)) * 250,
-                          y: Math.sin((i * 120) * (Math.PI / 180)) * 250
+                          x: Math.cos((i * 120) * (Math.PI / 180)) * 180,
+                          y: Math.sin((i * 120) * (Math.PI / 180)) * 180
                         }}
-                        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-2xl bg-black/80 border border-white/10 flex items-center justify-center text-yellow-400 backdrop-blur-xl shadow-2xl"
+                        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 sm:w-16 sm:h-16 rounded-xl sm:rounded-2xl bg-black/80 border border-white/10 flex items-center justify-center text-yellow-400 backdrop-blur-xl shadow-2xl"
                         style={{ zIndex: 30 }}
                       >
-                         <Icon size={24} />
+                         <Icon size={20} />
                       </motion.div>
                    ))}
                 </div>
@@ -292,15 +292,15 @@ const Services = () => {
       </section>
 
       {/* ── THE SERVICE STAGE (ALTERNATING LAYOUT) ── */}
-      <section id="services-list" className="pb-32 px-6 md:px-12 lg:px-24 pt-32">
-        <div className="max-w-[1400px] mx-auto space-y-32 md:space-y-48">
+      <section id="services-list" className="pb-16 sm:pb-32 px-4 sm:px-6 md:px-12 lg:px-24 pt-16 sm:pt-32">
+        <div className="max-w-[1400px] mx-auto space-y-20 sm:space-y-32 md:space-y-48">
           {services.map((s, i) => (
             <ScrollReveal key={i}>
-              <div className={`flex flex-col ${i % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center gap-16 lg:gap-32`}>
+              <div className={`flex flex-col ${i % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center gap-8 sm:gap-12 lg:gap-32`}>
                 
                 {/* Visual Anchor */}
                 <div className="w-full lg:w-1/2 relative group">
-                  <div className="relative aspect-[4/5] md:aspect-video lg:aspect-[5/5] rounded-[4rem] overflow-hidden border border-white/10 shadow-2xl">
+                  <div className="relative aspect-[4/5] md:aspect-video lg:aspect-[5/5] rounded-2xl sm:rounded-[3rem] md:rounded-[4rem] overflow-hidden border border-white/10 shadow-2xl">
                     <img 
                       src={s.img} 
                       alt={s.title} 
@@ -314,33 +314,33 @@ const Services = () => {
                 </div>
 
                 {/* Content Narrative */}
-                <div className="w-full lg:w-1/2 space-y-10">
-                  <div className="space-y-6">
-                    <div className="flex items-center gap-6">
-                       <div className="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-yellow-400 group-hover:bg-yellow-400 group-hover:text-black transition-all shadow-xl">
-                          <s.icon size={32} />
+                <div className="w-full lg:w-1/2 space-y-6 sm:space-y-10">
+                  <div className="space-y-4 sm:space-y-6">
+                    <div className="flex items-center gap-3 sm:gap-6">
+                       <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-xl sm:rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-yellow-400 group-hover:bg-yellow-400 group-hover:text-black transition-all shadow-xl shrink-0">
+                          <s.icon size={24} className="sm:w-8 sm:h-8" />
                        </div>
                        <div className="h-px flex-1 bg-white/10" />
-                       <span className="text-xs font-mono text-zinc-400 uppercase tracking-[0.6em] font-black">Solution 0{i+1}</span>
+                       <span className="text-[10px] sm:text-xs font-mono text-zinc-400 uppercase tracking-[0.3em] sm:tracking-[0.6em] font-black shrink-0">Solution 0{i+1}</span>
                     </div>
 
-                    <div className="space-y-4">
-                      <h2 className="text-5xl md:text-7xl font-display font-black text-white tracking-tighter uppercase leading-none pr-10">
+                    <div className="space-y-2 sm:space-y-4">
+                      <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-display font-black text-white tracking-tighter uppercase leading-none pr-2 sm:pr-10">
                         {s.title}
                       </h2>
-                      <p className="text-yellow-400 font-mono text-xs uppercase tracking-[0.4em] font-black">{s.subtitle}</p>
+                      <p className="text-yellow-400 font-mono text-[10px] sm:text-xs uppercase tracking-[0.3em] sm:tracking-[0.4em] font-black">{s.subtitle}</p>
                     </div>
                   </div>
 
-                  <p className="text-zinc-400 text-xl font-light leading-relaxed">
+                  <p className="text-zinc-400 text-base sm:text-lg md:text-xl font-light leading-relaxed">
                     {s.desc}
                   </p>
 
-                  <div className="flex flex-wrap gap-4 pt-4">
+                  <div className="flex flex-wrap gap-2 sm:gap-4 pt-2 sm:pt-4">
                     {s.features.slice(0, 4).map((feature, idx) => (
-                      <div key={idx} className="flex items-center gap-3 px-5 py-3 rounded-2xl bg-white/[0.03] border border-white/5">
-                        <div className="w-1.5 h-1.5 rounded-full bg-yellow-400" />
-                        <span className="text-xs font-mono uppercase tracking-widest text-zinc-200 font-bold">{feature}</span>
+                      <div key={idx} className="flex items-center gap-2 sm:gap-3 px-3 sm:px-5 py-2 sm:py-3 rounded-xl sm:rounded-2xl bg-white/[0.03] border border-white/5">
+                        <div className="w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full bg-yellow-400 shrink-0" />
+                        <span className="text-[9px] sm:text-xs font-mono uppercase tracking-wider sm:tracking-widest text-zinc-200 font-bold">{feature}</span>
                       </div>
                     ))}
                   </div>
@@ -353,36 +353,36 @@ const Services = () => {
       </section>
 
       {/* ── THE DIGITAL BLUEPRINT (METHODOLOGY) ── */}
-      <section id="methodology" className="py-48 px-6 md:px-12 lg:px-24 bg-white/[0.01] border-y border-white/5">
+      <section id="methodology" className="py-20 sm:py-32 md:py-48 px-4 sm:px-6 md:px-12 lg:px-24 bg-white/[0.01] border-y border-white/5">
         <div className="max-w-[1400px] mx-auto">
           <ScrollReveal>
-            <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-12 mb-32 border-b border-white/5 pb-20">
-              <div className="space-y-6">
-                <p className="text-yellow-400 font-mono text-xs uppercase tracking-[0.8em] font-black">Methodology_System</p>
-                <h2 className="text-6xl md:text-8xl font-display font-black tracking-tighter uppercase leading-none">
+            <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 sm:gap-12 mb-16 sm:mb-24 md:mb-32 border-b border-white/5 pb-10 sm:pb-20">
+              <div className="space-y-4 sm:space-y-6">
+                <p className="text-yellow-400 font-mono text-[10px] sm:text-xs uppercase tracking-[0.4em] sm:tracking-[0.8em] font-black">Methodology_System</p>
+                <h2 className="text-4xl sm:text-6xl md:text-8xl font-display font-black tracking-tighter uppercase leading-none">
                   THE <span className="text-zinc-800">PLAN.</span>
                 </h2>
               </div>
-              <p className="max-w-md text-zinc-500 font-light text-xl leading-relaxed">
+              <p className="max-w-md text-zinc-500 font-light text-base sm:text-xl leading-relaxed">
                 Our work is precise. We use a clear plan to ensure your growth is <span className="text-white">steady and sustainable.</span>
               </p>
             </div>
           </ScrollReveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-6">
             {methodology.map((item, i) => (
               <ScrollReveal key={i} delay={i * 0.1}>
-                <div className="relative p-12 rounded-[3.5rem] bg-white/[0.02] border border-white/5 group hover:bg-yellow-400 hover:border-transparent transition-all duration-700 h-full flex flex-col justify-between overflow-hidden">
-                  <div className="absolute -top-10 -right-10 text-[10rem] font-display font-black text-white/[0.01] group-hover:text-black/5 pointer-events-none">
+                <div className="relative p-5 sm:p-8 md:p-12 rounded-2xl sm:rounded-[2.5rem] md:rounded-[3.5rem] bg-white/[0.02] border border-white/5 group hover:bg-yellow-400 hover:border-transparent transition-all duration-700 h-full flex flex-col justify-between overflow-hidden">
+                  <div className="absolute -top-10 -right-10 text-[6rem] sm:text-[10rem] font-display font-black text-white/[0.01] group-hover:text-black/5 pointer-events-none">
                     0{i + 1}
                   </div>
-                  <div className="space-y-8 relative z-10">
-                    <div className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-yellow-400 group-hover:bg-black group-hover:text-yellow-400 transition-all">
-                      <item.icon size={24} />
+                  <div className="space-y-4 sm:space-y-8 relative z-10">
+                    <div className="w-10 h-10 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-yellow-400 group-hover:bg-black group-hover:text-yellow-400 transition-all">
+                      <item.icon size={18} className="sm:w-6 sm:h-6" />
                     </div>
-                    <div className="space-y-4">
-                      <h3 className="text-2xl font-display font-black text-white group-hover:text-black uppercase tracking-tighter">{item.title}</h3>
-                      <p className="text-zinc-500 group-hover:text-black/70 text-base font-light leading-relaxed">{item.text}</p>
+                    <div className="space-y-2 sm:space-y-4">
+                      <h3 className="text-base sm:text-xl md:text-2xl font-display font-black text-white group-hover:text-black uppercase tracking-tighter">{item.title}</h3>
+                      <p className="text-zinc-500 group-hover:text-black/70 text-xs sm:text-sm md:text-base font-light leading-relaxed">{item.text}</p>
                     </div>
                   </div>
                 </div>
@@ -393,21 +393,21 @@ const Services = () => {
       </section>
 
       {/* ── PERFORMANCE RECORD ── */}
-      <section className="py-48 px-6 md:px-12 lg:px-24">
+      <section className="py-20 sm:py-32 md:py-48 px-4 sm:px-6 md:px-12 lg:px-24">
         <div className="max-w-[1400px] mx-auto text-center">
           <ScrollReveal>
-            <div className="space-y-24">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-24 items-center">
+            <div className="space-y-12 sm:space-y-24">
+              <div className="grid grid-cols-3 gap-4 sm:gap-8 md:gap-24 items-center">
                 {[
                   { val: "50+", sub: "Global Markets Penetrated", label: "Scale" },
                   { val: "12x", sub: "Avg Client ROI Velocity", label: "Velocity" },
                   { val: "10+", sub: "Creative & Technical Minds", label: "Architecture" }
                 ].map((stat, i) => (
-                  <div key={i} className="space-y-4 group">
-                    <p className="text-8xl lg:text-9xl font-display font-black text-white tracking-tighter leading-none group-hover:text-yellow-400 transition-colors duration-500">{stat.val}</p>
+                  <div key={i} className="space-y-2 sm:space-y-4 group">
+                    <p className="text-4xl sm:text-6xl md:text-8xl lg:text-9xl font-display font-black text-white tracking-tighter leading-none group-hover:text-yellow-400 transition-colors duration-500">{stat.val}</p>
                       <div className="space-y-1">
-                       <p className="text-xs font-mono text-zinc-300 uppercase tracking-[0.5em] font-bold group-hover:text-white transition-colors">{stat.label}</p>
-                       <p className="text-[11px] font-mono text-yellow-500/60 uppercase tracking-widest">{stat.sub}</p>
+                       <p className="text-[9px] sm:text-xs font-mono text-zinc-300 uppercase tracking-[0.2em] sm:tracking-[0.5em] font-bold group-hover:text-white transition-colors">{stat.label}</p>
+                       <p className="text-[8px] sm:text-[11px] font-mono text-yellow-500/60 uppercase tracking-wider sm:tracking-widest hidden sm:block">{stat.sub}</p>
                     </div>
                   </div>
                 ))}

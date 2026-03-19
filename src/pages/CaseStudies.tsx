@@ -118,7 +118,7 @@ const CaseStudies = () => {
   });
 
   return (
-    <div ref={containerRef} className="bg-[#0b0d17] text-white selection:bg-yellow-400 selection:text-black font-body overflow-hidden">
+    <div ref={containerRef} className="bg-[#0b0d17] text-white selection:bg-yellow-400 selection:text-black font-body">
       
       {/* ── BACKGROUND ARCHITECTURE ── */}
       <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
@@ -129,7 +129,7 @@ const CaseStudies = () => {
       </div>
 
       {/* ── HERO SECTION ── */}
-      <section className="relative min-h-[85vh] flex flex-col items-center justify-center pt-40 pb-24 px-6 overflow-hidden">
+      <section className="relative min-h-[85vh] flex flex-col items-center justify-center pt-28 sm:pt-40 pb-16 sm:pb-24 px-4 sm:px-6 overflow-hidden">
         {/* Massive Watermark */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full text-center pointer-events-none opacity-[0.02]">
            <h1 className="text-[28vw] font-display font-black leading-none tracking-tighter uppercase select-none">
@@ -139,41 +139,39 @@ const CaseStudies = () => {
 
         <div className="max-w-7xl mx-auto w-full relative z-10 text-center">
           <ScrollReveal>
-            <div className="inline-flex items-center gap-3 bg-white/[0.03] border border-white/5 py-2 px-6 rounded-full backdrop-blur-sm mb-12">
-               <div className="w-2 h-2 rounded-full bg-yellow-400 animate-pulse" />
-               <span className="text-yellow-400 font-mono text-[11px] uppercase tracking-[0.5em] font-black">Success Stories</span>
+            <div className="inline-flex items-center gap-2 sm:gap-3 bg-white/[0.03] border border-white/5 py-2 px-4 sm:px-6 rounded-full backdrop-blur-sm mb-6 sm:mb-12">
+               <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-yellow-400 animate-pulse shrink-0" />
+               <span className="text-yellow-400 font-mono text-[9px] sm:text-[11px] uppercase tracking-[0.3em] sm:tracking-[0.5em] font-black">Success Stories</span>
             </div>
           </ScrollReveal>
 
           <ScrollReveal delay={0.2}>
-            <h1 className="text-7xl md:text-8xl lg:text-[140px] font-display font-black tracking-tighter uppercase leading-[0.8] mb-12">
+            <h1 className="text-[14vw] sm:text-7xl md:text-8xl lg:text-[140px] font-display font-black tracking-tighter uppercase leading-[0.8] mb-6 sm:mb-12">
               <span className="block text-white">DIGITAL.</span>
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-white/90 to-white/40 underline decoration-yellow-400/20 underline-offset-[12px]">SUCCESS.</span>
+              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-white/90 to-white/40 underline decoration-yellow-400/20 underline-offset-[6px] sm:underline-offset-[12px]">SUCCESS.</span>
             </h1>
           </ScrollReveal>
 
           <ScrollReveal delay={0.4}>
-            <p className="text-xl md:text-2xl text-zinc-300 font-body font-light max-w-2xl mx-auto leading-relaxed mb-20">
+            <p className="text-base sm:text-xl md:text-2xl text-zinc-300 font-body font-light max-w-2xl mx-auto leading-relaxed mb-10 sm:mb-20 px-2">
               A deep look into the growth plans we've built for brands that want more than average results.
             </p>
           </ScrollReveal>
 
           {/* Statistics Strip */}
           <ScrollReveal delay={0.6}>
-            <div className="flex flex-wrap justify-center gap-12 md:gap-32 items-center px-4 py-12 border-y border-white/5 bg-white/[0.01]">
+            <div className="grid grid-cols-3 gap-4 sm:gap-8 md:gap-16 items-center px-2 sm:px-4 py-6 sm:py-12 border-y border-white/5 bg-white/[0.01]">
                <div className="text-center group">
-                   <p className="text-4xl md:text-6xl font-display font-black text-white group-hover:text-yellow-400 transition-colors">₹50M+</p>
-                  <p className="text-zinc-400 font-mono text-xs uppercase tracking-widest mt-3">Revenue Generated</p>
+                   <p className="text-2xl sm:text-4xl md:text-6xl font-display font-black text-white group-hover:text-yellow-400 transition-colors">₹50M+</p>
+                  <p className="text-zinc-400 font-mono text-[8px] sm:text-xs uppercase tracking-wider sm:tracking-widest mt-1 sm:mt-3">Revenue Generated</p>
                </div>
-               <div className="hidden md:block w-px h-16 bg-white/10" />
-               <div className="text-center group">
-                  <p className="text-4xl md:text-6xl font-display font-black text-white group-hover:text-yellow-400 transition-colors">450%</p>
-                  <p className="text-zinc-400 font-mono text-xs uppercase tracking-widest mt-3">Avg ROI Scale</p>
+               <div className="text-center group border-x border-white/5 px-2">
+                  <p className="text-2xl sm:text-4xl md:text-6xl font-display font-black text-white group-hover:text-yellow-400 transition-colors">450%</p>
+                  <p className="text-zinc-400 font-mono text-[8px] sm:text-xs uppercase tracking-wider sm:tracking-widest mt-1 sm:mt-3">Avg ROI Scale</p>
                </div>
-               <div className="hidden md:block w-px h-16 bg-white/10" />
                <div className="text-center group">
-                  <p className="text-4xl md:text-6xl font-display font-black text-white group-hover:text-yellow-400 transition-colors">120+</p>
-                  <p className="text-zinc-400 font-mono text-xs uppercase tracking-widest mt-3">Global Partners</p>
+                  <p className="text-2xl sm:text-4xl md:text-6xl font-display font-black text-white group-hover:text-yellow-400 transition-colors">120+</p>
+                  <p className="text-zinc-400 font-mono text-[8px] sm:text-xs uppercase tracking-wider sm:tracking-widest mt-1 sm:mt-3">Global Partners</p>
                </div>
             </div>
           </ScrollReveal>
@@ -189,14 +187,14 @@ const CaseStudies = () => {
       </section>
 
       {/* ── FILTER SECTION ── */}
-      <section className="py-12 px-6 sticky top-[80px] z-40 bg-[#04060b]/90 backdrop-blur-2xl border-y border-white/5 overflow-x-auto scrollbar-hide">
-         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
-            <div className="flex items-center gap-3 min-w-max">
+      <section className="py-4 sm:py-6 md:py-8 px-4 sm:px-6 sticky top-24 z-40 bg-[#04060b]/98 backdrop-blur-2xl border-y border-white/5">
+         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4">
+            <div className="flex flex-wrap items-center gap-2">
                {categories.map((cat, i) => (
                   <button
                     key={i}
                     onClick={() => setActiveCategory(cat)}
-                    className={`px-6 py-3 rounded-2xl font-display text-xs font-bold uppercase tracking-widest transition-all duration-300 border ${
+                    className={`px-3 sm:px-6 py-2 sm:py-3 rounded-xl sm:rounded-2xl font-display text-[9px] sm:text-xs font-bold uppercase tracking-wider sm:tracking-widest transition-all duration-300 border ${
                       activeCategory === cat 
                         ? 'bg-yellow-400 text-black border-yellow-400 shadow-[0_0_20px_rgba(250,204,21,0.2)]' 
                         : 'bg-white/[0.02] text-zinc-400 border-white/5 hover:border-yellow-400/30 hover:text-white'
@@ -207,33 +205,33 @@ const CaseStudies = () => {
                ))}
             </div>
             
-            <div className="flex items-center gap-4 text-zinc-600 bg-white/[0.02] border border-white/10 px-6 py-3 rounded-2xl w-full md:w-auto">
-               <Search size={14} />
+            <div className="flex items-center gap-3 sm:gap-4 text-zinc-600 bg-white/[0.02] border border-white/10 px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl sm:rounded-2xl w-full md:w-auto">
+               <Search size={14} className="shrink-0" />
                <input 
                  type="text" 
                  placeholder="Search project..." 
                  value={searchQuery}
                  onChange={(e) => setSearchQuery(e.target.value)}
-                 className="bg-transparent border-none outline-none text-xs font-mono tracking-widest text-white placeholder:text-zinc-500 w-full md:w-48"
+                 className="bg-transparent border-none outline-none text-[10px] sm:text-xs font-mono tracking-widest text-white placeholder:text-zinc-500 w-full md:w-48"
                />
             </div>
          </div>
       </section>
 
       {/* ── CASE STUDIES LIST ── */}
-      <section className="py-32 px-6">
-        <div className="max-w-7xl mx-auto space-y-40 lg:space-y-64">
+      <section className="py-16 sm:py-24 md:py-32 px-4 sm:px-6">
+        <div className="max-w-7xl mx-auto space-y-20 sm:space-y-32 lg:space-y-64">
           {filteredCases.map((study, i) => (
             <motion.div
               key={study.id}
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              className={`flex flex-col ${i % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center gap-16 lg:gap-24`}
+              viewport={{ once: true, margin: "-50px" }}
+              className={`flex flex-col ${i % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center gap-8 sm:gap-12 lg:gap-24`}
             >
               {/* Image Side */}
               <div className="w-full lg:w-[62%] relative group">
-                <div className="relative aspect-[4/3] rounded-[4rem] overflow-hidden border border-white/10 shadow-[0_40px_100px_rgba(0,0,0,0.5)] bg-zinc-900">
+                <div className="relative aspect-[4/3] rounded-2xl sm:rounded-[3rem] md:rounded-[4rem] overflow-hidden border border-white/10 shadow-[0_40px_100px_rgba(0,0,0,0.5)] bg-zinc-900">
                    <img 
                      src={study.image} 
                      alt={study.title} 
@@ -242,11 +240,11 @@ const CaseStudies = () => {
                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 pointer-events-none" />
                    
                    {/* Results Badge */}
-                   <div className="absolute top-10 left-10 bg-black/70 backdrop-blur-2xl border border-white/10 p-8 rounded-[2.5rem] group-hover:-translate-y-2 transition-transform duration-500 shadow-2xl">
-                      <p className={`text-5xl font-display font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-r ${study.color}`}>
+                   <div className="absolute top-3 left-3 sm:top-10 sm:left-10 bg-black/80 backdrop-blur-2xl border border-white/10 p-3 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl md:rounded-[2.5rem] group-hover:-translate-y-2 transition-transform duration-500 shadow-2xl">
+                      <p className={`text-2xl sm:text-4xl md:text-5xl font-display font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-r ${study.color}`}>
                         {study.metric}
                       </p>
-                      <p className="text-xs font-display text-zinc-400 uppercase tracking-[0.2em] mt-2 font-bold">{study.metricLabel}</p>
+                      <p className="text-[8px] sm:text-xs font-display text-zinc-400 uppercase tracking-widest mt-1 font-bold">{study.metricLabel}</p>
                    </div>
                 </div>
                 
@@ -255,41 +253,41 @@ const CaseStudies = () => {
               </div>
 
               {/* Text Side */}
-              <div className="w-full lg:w-[38%] space-y-10">
-                <div className="space-y-8">
-                  <div className="flex items-center gap-6">
-                     <span className="px-5 py-2 rounded-full bg-white/[0.03] border border-white/5 text-yellow-400 font-mono text-xs uppercase tracking-[0.3em] font-black">
+              <div className="w-full lg:w-[38%] space-y-6 sm:space-y-10">
+                <div className="space-y-4 sm:space-y-8">
+                  <div className="flex items-center gap-3 sm:gap-6">
+                     <span className="px-3 sm:px-5 py-1.5 sm:py-2 rounded-full bg-white/[0.03] border border-white/5 text-yellow-400 font-mono text-[9px] sm:text-xs uppercase tracking-[0.2em] sm:tracking-[0.3em] font-black shrink-0">
                        {study.category}
                      </span>
                      <div className="h-px flex-1 bg-white/5" />
-                     <span className="text-zinc-400 font-mono text-xs uppercase tracking-[0.2em] font-bold">Client_{study.id}</span>
+                     <span className="text-zinc-400 font-mono text-[9px] sm:text-xs uppercase tracking-[0.15em] sm:tracking-[0.2em] font-bold shrink-0">Client_{study.id}</span>
                   </div>
-                  
-                  <h2 className="text-5xl md:text-6xl lg:text-[64px] font-display font-black tracking-tighter uppercase leading-[0.95] text-white">
+                   
+                  <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[64px] font-display font-black tracking-tighter uppercase leading-[0.95] text-white">
                     {study.title}
                   </h2>
-                  
-                  <p className="text-lg text-zinc-300 font-body font-light leading-relaxed border-l-2 border-yellow-400/20 pl-6">
+                   
+                  <p className="text-base sm:text-lg text-zinc-300 font-body font-light leading-relaxed border-l-2 border-yellow-400/20 pl-4 sm:pl-6">
                     {study.description}
                   </p>
                 </div>
 
-                <div className="flex flex-wrap gap-4 pt-4">
+                <div className="flex flex-wrap gap-2 sm:gap-4 pt-2 sm:pt-4">
                    {study.tags.map((tag, idx) => (
-                      <span key={idx} className="text-xs font-mono text-zinc-400 uppercase tracking-widest border border-white/5 px-5 py-2.5 rounded-2xl bg-white/[0.01] hover:text-white transition-colors">
+                      <span key={idx} className="text-[9px] sm:text-xs font-mono text-zinc-400 uppercase tracking-wider sm:tracking-widest border border-white/5 px-3 sm:px-5 py-1.5 sm:py-2.5 rounded-xl sm:rounded-2xl bg-white/[0.01] hover:text-white transition-colors">
                         {tag}
                       </span>
                    ))}
                 </div>
 
-                <div className="pt-8 group/btn">
-                  <Link to="/contact" className="inline-flex items-center gap-8 group">
-                    <div className="w-20 h-20 rounded-full border border-white/10 flex items-center justify-center text-white group-hover:bg-yellow-400 group-hover:text-black group-hover:border-yellow-400 transition-all duration-700 shadow-2xl">
-                        <ArrowUpRight size={28} className="group-hover:rotate-45 transition-transform duration-500" />
+                <div className="pt-4 sm:pt-8 group/btn">
+                  <Link to="/contact" className="inline-flex items-center gap-4 sm:gap-8 group">
+                    <div className="w-14 h-14 sm:w-20 sm:h-20 rounded-full border border-white/10 flex items-center justify-center text-white group-hover:bg-yellow-400 group-hover:text-black group-hover:border-yellow-400 transition-all duration-700 shadow-2xl shrink-0">
+                        <ArrowUpRight size={20} className="sm:w-7 sm:h-7 group-hover:rotate-45 transition-transform duration-500" />
                     </div>
                     <div className="space-y-1 text-left">
-                        <p className="text-white font-display font-black text-xl uppercase tracking-tighter">View Case Study</p>
-                        <p className="text-[11px] font-mono text-yellow-400/60 uppercase tracking-widest font-black group-hover:text-yellow-400 transition-colors">Full Project Report</p>
+                        <p className="text-white font-display font-black text-base sm:text-xl uppercase tracking-tighter">View Case Study</p>
+                        <p className="text-[9px] sm:text-[11px] font-mono text-yellow-400/60 uppercase tracking-wider sm:tracking-widest font-black group-hover:text-yellow-400 transition-colors">Full Project Report</p>
                     </div>
                   </Link>
                 </div>

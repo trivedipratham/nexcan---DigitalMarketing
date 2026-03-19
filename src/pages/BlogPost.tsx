@@ -16,8 +16,30 @@ const BlogPost = () => {
       if (!id) return;
       try {
         setLoading(true);
-        const fetchedPost = await blogApi.getBlogById(id);
-        setPost(fetchedPost);
+        
+        // Fetch post and categories in parallel
+        const [fetchedPost, catResult] = await Promise.all([
+          blogApi.getBlogById(id),
+          blogApi.getCategoriesWithIds(),
+        ]);
+
+        if (fetchedPost) {
+          // Build category mapping and find this post's real category
+          const catData = Array.isArray(catResult) ? catResult : catResult?.data || [];
+          let realCategory = fetchedPost.category;
+
+          if (Array.isArray(catData)) {
+            for (const c of catData) {
+              const name = c.category_name || c.name;
+              if (Array.isArray(c.blog_ids) && c.blog_ids.includes(Number(id))) {
+                realCategory = name;
+                break;
+              }
+            }
+          }
+
+          setPost({ ...fetchedPost, category: realCategory });
+        }
       } catch (error) {
         console.error("Failed to fetch post:", error);
       } finally {
@@ -58,7 +80,7 @@ const BlogPost = () => {
         <div className="absolute bottom-0 left-0 w-[50%] h-[50%] bg-white/[0.015] blur-[150px] rounded-full" />
       </div>
 
-      <article className="relative z-10 pt-40 pb-32">
+      <article className="relative z-10 pt-32 lg:pt-44 pb-32">
         <div className="max-w-7xl mx-auto px-6">
           {/* Navigation & Metadata */}
           <ScrollReveal>
@@ -85,23 +107,25 @@ const BlogPost = () => {
               <span className="inline-block px-5 py-2 rounded-full bg-yellow-400/10 border border-yellow-400/20 text-yellow-400 font-mono text-[10px] uppercase tracking-widest font-black mb-6">
                 {post.category}
               </span>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-black tracking-tighter uppercase leading-[0.95] text-white">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-black tracking-tighter uppercase leading-[0.95] text-white">
                 {post.title}
               </h1>
             </ScrollReveal>
 
             <ScrollReveal delay={0.2}>
-              <div className="flex items-center gap-6 py-10 border-y border-white/5">
-                <div className="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center overflow-hidden">
-                  <img src="https://i.pravatar.cc/150?u=soul_alex" className="w-full h-full object-cover" alt={post.author} />
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 py-8 sm:py-10 border-y border-white/5">
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-xl sm:rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center overflow-hidden">
+                    <img src="https://i.pravatar.cc/150?u=soul_alex" className="w-full h-full object-cover" alt={post.author} />
+                  </div>
+                  <div className="space-y-1">
+                    <p className="text-white font-display text-base sm:text-lg font-black uppercase tracking-tight">{post.author}</p>
+                    <p className="text-zinc-600 font-mono text-[9px] sm:text-[10px] uppercase tracking-widest font-black">Marketing Strategy Lead</p>
+                  </div>
                 </div>
-                <div className="space-y-1">
-                  <p className="text-white font-display text-lg font-black uppercase tracking-tight">{post.author}</p>
-                  <p className="text-zinc-600 font-mono text-[10px] uppercase tracking-widest font-black">Marketing Strategy Lead</p>
-                </div>
-                <div className="ml-auto">
-                   <button className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-zinc-500 hover:bg-yellow-400 hover:text-black hover:border-yellow-400 transition-all">
-                      <Share2 size={18} />
+                <div className="sm:ml-auto w-full sm:w-auto flex justify-end">
+                   <button className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-white/10 flex items-center justify-center text-zinc-500 hover:bg-yellow-400 hover:text-black hover:border-yellow-400 transition-all">
+                      <Share2 size={16} />
                    </button>
                 </div>
               </div>
@@ -110,7 +134,7 @@ const BlogPost = () => {
 
           {/* Featured Image */}
           <ScrollReveal delay={0.3}>
-            <div className="relative aspect-[16/9] rounded-[3.5rem] overflow-hidden border border-white/10 shadow-3xl mb-16">
+            <div className="relative aspect-[16/9] rounded-2xl sm:rounded-3xl lg:rounded-[3.5rem] overflow-hidden border border-white/10 shadow-3xl mb-12 sm:mb-16">
               <img src={post.image} className="w-full h-full object-cover" alt={post.title} />
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
             </div>
@@ -128,53 +152,59 @@ const BlogPost = () => {
 
           {/* Author Footer Card */}
           <ScrollReveal delay={0.5}>
-             <div className="mt-32 p-12 rounded-[3.5rem] bg-white/[0.02] border border-white/5 flex flex-col md:flex-row items-center gap-10">
-                <div className="w-32 h-32 rounded-[2rem] overflow-hidden border-2 border-yellow-400/20 shrink-0">
+             <div className="mt-20 sm:mt-32 p-6 sm:p-12 rounded-3xl lg:rounded-[3.5rem] bg-white/[0.02] border border-white/5 flex flex-col md:flex-row items-center gap-8 sm:gap-10">
+                <div className="w-24 h-24 sm:w-32 sm:h-32 rounded-2xl sm:rounded-[2rem] overflow-hidden border-2 border-yellow-400/20 shrink-0">
                    <img src="https://i.pravatar.cc/150?u=soul_alex" className="w-full h-full object-cover" alt={post.author} />
                 </div>
                 <div className="space-y-4 text-center md:text-left">
                    <div className="space-y-1">
-                      <p className="text-zinc-500 font-mono text-[10px] uppercase tracking-widest font-black text-white/40">Written By</p>
-                      <h4 className="text-3xl font-display font-black uppercase text-white">{post.author}</h4>
+                      <p className="text-zinc-500 font-mono text-[9px] sm:text-[10px] uppercase tracking-widest font-black text-white/40">Written By</p>
+                      <h4 className="text-2xl sm:text-3xl font-display font-black uppercase text-white">{post.author}</h4>
                    </div>
-                   <p className="text-zinc-400 font-light leading-relaxed max-w-xl">
+                   <p className="text-zinc-400 font-light leading-relaxed max-w-xl text-sm sm:text-base">
                       Alex is a Senior Marketing Strategist at Nexcan, specializing in cognitive search evolution and predictive brand narrative. With over a decade of experience in the digital-first economy.
                    </p>
-                   <div className="flex items-center justify-center md:justify-start gap-4">
-                      <button className="text-yellow-400 font-mono text-[10px] uppercase tracking-widest border-b border-yellow-400/20 pb-1 hover:text-white transition-colors">View All Articles</button>
-                      <span className="w-1.5 h-1.5 rounded-full bg-white/10" />
-                      <button className="text-zinc-600 font-mono text-[10px] uppercase tracking-widest hover:text-white transition-colors">LinkedIn Profile</button>
+                   <div className="flex flex-wrap items-center justify-center md:justify-start gap-4">
+                      <button className="text-yellow-400 font-mono text-[9px] sm:text-[10px] uppercase tracking-widest border-b border-yellow-400/20 pb-1 hover:text-white transition-colors">View All Articles</button>
+                      <span className="hidden sm:block w-1.5 h-1.5 rounded-full bg-white/10" />
+                      <button className="text-zinc-600 font-mono text-[9px] sm:text-[10px] uppercase tracking-widest hover:text-white transition-colors">LinkedIn Profile</button>
                    </div>
                 </div>
              </div>
           </ScrollReveal>
 
           {/* Related Navigation */}
-          <div className="mt-20 pt-10 border-t border-white/5 flex items-center justify-between">
+          <div className="mt-16 sm:mt-20 pt-10 border-t border-white/5 flex items-center justify-between gap-4">
              <button 
               onClick={() => navigate('/blog')}
-              className="group flex items-center gap-4 text-zinc-500 hover:text-white transition-colors"
+              className="group flex items-center gap-3 sm:gap-4 text-zinc-500 hover:text-white transition-colors text-left"
              >
-                <div className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-white group-hover:text-black transition-all">
-                   <ArrowLeft size={20} />
+                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-white group-hover:text-black transition-all shrink-0">
+                   <ArrowLeft size={18} />
                 </div>
-                <span className="font-display font-black text-xs uppercase tracking-widest">Previous Article</span>
+                <div className="flex flex-col">
+                   <span className="text-[8px] font-mono uppercase tracking-[0.2em] text-zinc-700">Previous</span>
+                   <span className="hidden sm:block font-display font-black text-[10px] sm:text-xs uppercase tracking-widest line-clamp-1">Article</span>
+                </div>
              </button>
              
              <Link 
               to="/blog"
-              className="hidden md:flex items-center gap-2 text-[10px] font-mono text-zinc-700 uppercase tracking-[0.3em]"
+              className="hidden lg:flex items-center gap-2 text-[10px] font-mono text-zinc-700 uppercase tracking-[0.3em]"
              >
                 Archive Directory
              </Link>
-
+ 
              <button 
               onClick={() => navigate('/blog')}
-              className="group flex items-center gap-4 text-zinc-500 hover:text-white transition-colors text-right"
+              className="group flex items-center gap-3 sm:gap-4 text-zinc-500 hover:text-white transition-colors text-right"
              >
-                <span className="font-display font-black text-xs uppercase tracking-widest">Next Insight</span>
-                <div className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-yellow-400 group-hover:text-black group-hover:border-yellow-400 transition-all">
-                   <ArrowLeft size={20} className="rotate-180" />
+                <div className="flex flex-col items-end">
+                   <span className="text-[8px] font-mono uppercase tracking-[0.2em] text-zinc-700">Next</span>
+                   <span className="hidden sm:block font-display font-black text-[10px] sm:text-xs uppercase tracking-widest line-clamp-1">Insight</span>
+                </div>
+                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-yellow-400 group-hover:text-black group-hover:border-yellow-400 transition-all shrink-0">
+                   <ArrowLeft size={18} className="rotate-180" />
                 </div>
              </button>
           </div>
@@ -189,22 +219,24 @@ const BlogPost = () => {
           font-weight: 900;
           text-transform: uppercase;
           letter-spacing: -0.05em;
-          font-size: 2.5rem;
+          font-size: clamp(1.75rem, 5vw, 2.5rem);
           color: white;
-          margin-top: 4rem;
-          margin-bottom: 2rem;
+          margin-top: 3rem;
+          margin-bottom: 1.5rem;
         }
         .blog-content p {
-          margin-bottom: 2rem;
+          margin-bottom: 1.5rem;
+          font-size: clamp(1rem, 2.5vw, 1.25rem);
         }
         .blog-content ul, .blog-content ol {
-          margin-left: 1.5rem;
-          margin-bottom: 3rem;
-          space-y: 1.5rem;
+          margin-left: 1.25rem;
+          margin-bottom: 2.5rem;
+          space-y: 1rem;
         }
         .blog-content li {
-          margin-bottom: 1rem;
+          margin-bottom: 0.75rem;
           color: #a1a1aa;
+          font-size: clamp(0.95rem, 2.2vw, 1.15rem);
         }
         .blog-content strong {
           color: #facc15;

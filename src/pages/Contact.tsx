@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import {
   Mail,
   Phone,
@@ -21,6 +21,13 @@ import {
 import { motion, AnimatePresence } from "framer-motion";
 import ScrollReveal from "@/components/ScrollReveal";
 
+import axios from "axios";
+
+const isLocal = typeof window !== 'undefined' && (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1");
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || (isLocal ? "http://localhost/karmadude-api" : "https://api.karmadude.in");
+const API_ENDPOINT = `${API_BASE_URL}/api/nexcan-contacts`;
+const API_KEY = import.meta.env.VITE_API_KEY || "karmadude_api_key_secure_2025";
+
 const Contact = () => {
   const [form, setForm] = useState({
     name: "",
@@ -29,8 +36,10 @@ const Contact = () => {
     message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<{ type: 'success' | 'error', message: string } | null>(null);
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
   const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const params = new URLSearchParams(location.search);
@@ -41,19 +50,45 @@ const Contact = () => {
         subject: `Inquiry: ${selectedPlan}`,
         message: `I'm interested in the ${selectedPlan} plan. Please provide more details.`
       }));
+      // Remove query parameters from URL immediately
+      // This ensures that refreshing the page clears the data
+      navigate(location.pathname, { replace: true });
     }
-  }, [location.search]);
+  }, [location.search, location.pathname, navigate]);
 
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setTimeout(() => {
-      alert("Message sent successfully. Our team will respond within 24 hours.");
-      setForm({ name: "", email: "", subject: "", message: "" });
+    setSubmitStatus(null);
+
+    try {
+      const response = await axios.post(API_ENDPOINT, form, {
+        headers: {
+          "x-api-key": API_KEY,
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (response.data.success) {
+        setSubmitStatus({
+          type: 'success',
+          message: "Message sent successfully. Our team will respond within 24 hours."
+        });
+        setForm({ name: "", email: "", subject: "", message: "" });
+      } else {
+        throw new Error(response.data.message || "Failed to send message");
+      }
+    } catch (error: any) {
+      console.error("Error submitting contact form:", error);
+      setSubmitStatus({
+        type: 'error',
+        message: error.response?.data?.message || error.message || "Failed to send message. Please try again later."
+      });
+    } finally {
       setIsSubmitting(false);
-    }, 1500);
+    }
   };
 
   const faqs = [
@@ -138,7 +173,7 @@ const Contact = () => {
             transition={{ duration: 2 }}
             className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full text-center"
           >
-            <h2 className="text-[25vw] font-display font-black tracking-tighter uppercase leading-none">
+            <h2 className="text-[35vw] sm:text-[25vw] font-display font-black tracking-tighter uppercase leading-none">
               CONTACT
             </h2>
           </motion.div>
@@ -169,7 +204,7 @@ const Contact = () => {
                   </span>
                 </div>
 
-                <h1 className="text-7xl md:text-9xl lg:text-[130px] font-display font-black tracking-tighter leading-[0.8] uppercase select-none">
+                <h1 className="text-6xl sm:text-7xl md:text-9xl lg:text-[130px] font-display font-black tracking-tighter leading-[0.85] uppercase select-none">
                   <span className="block text-white/30">LET'S</span>
                   <span className="block text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-white/40">
                     BRIDGE.
@@ -177,8 +212,8 @@ const Contact = () => {
                 </h1>
               </div>
 
-              <div className="relative pl-10 border-l border-white/10 mt-12 max-w-xl">
-                <p className="text-zinc-300 text-xl lg:text-2xl font-light leading-relaxed">
+              <div className="relative pl-6 sm:pl-10 border-l border-white/10 mt-8 sm:mt-12 max-w-xl">
+                <p className="text-lg sm:text-xl lg:text-2xl font-light leading-relaxed">
                   Got questions, ideas, or need support?{" "}
                   <span className="text-white font-medium">
                     Let's start a conversation
@@ -213,10 +248,10 @@ const Contact = () => {
                 ))}
 
                 {/* The Core Visual */}
-                <div className="absolute inset-0 flex items-center justify-center p-12">
+                <div className="absolute inset-0 flex items-center justify-center p-6 sm:p-12">
                   <motion.div
                     whileHover={{ scale: 1.05 }}
-                    className="w-full h-full bg-[#0d121f]/40 backdrop-blur-3xl border border-white/10 rounded-[3rem] p-4 relative overflow-hidden group shadow-3xl"
+                    className="w-full h-full bg-[#0d121f]/40 backdrop-blur-3xl border border-white/10 rounded-3xl sm:rounded-[3rem] p-3 sm:p-4 relative overflow-hidden group shadow-3xl"
                   >
                     <img
                       src="/modern_office_tech_hq.png"
@@ -274,11 +309,16 @@ const Contact = () => {
                   {[Mail, Phone, Globe].map((Icon, i) => (
                     <motion.div
                       key={i}
+                      initial={false}
                       animate={{
-                        x: Math.cos((i * 120 + 45) * (Math.PI / 180)) * 240,
-                        y: Math.sin((i * 120 + 45) * (Math.PI / 180)) * 240,
+                        x: typeof window !== 'undefined' && window.innerWidth < 1024 
+                          ? Math.cos((i * 120 + 45) * (Math.PI / 180)) * 140 
+                          : Math.cos((i * 120 + 45) * (Math.PI / 180)) * 240,
+                        y: typeof window !== 'undefined' && window.innerWidth < 1024 
+                          ? Math.sin((i * 120 + 45) * (Math.PI / 180)) * 140 
+                          : Math.sin((i * 120 + 45) * (Math.PI / 180)) * 240,
                       }}
-                      className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 rounded-xl bg-black/80 border border-white/10 flex items-center justify-center text-yellow-400 backdrop-blur-xl shadow-2xl z-30"
+                      className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-black/80 border border-white/10 flex items-center justify-center text-yellow-400 backdrop-blur-xl shadow-2xl z-30"
                     >
                       <Icon size={18} />
                     </motion.div>
@@ -301,32 +341,28 @@ const Contact = () => {
                   {/* Outer Glow */}
                   <div className="absolute -inset-1 bg-yellow-400/10 blur-[80px] opacity-0 group-hover:opacity-100 transition-opacity duration-1000 rounded-[3rem]" />
 
-                  <div className="relative h-full bg-white/[0.03] backdrop-blur-3xl border border-white/10 rounded-[3rem] p-8 md:p-12 lg:p-14 shadow-2xl overflow-hidden flex flex-col justify-center">
+                  <div className="relative h-full bg-white/[0.03] backdrop-blur-3xl border border-white/10 rounded-3xl sm:rounded-[3rem] p-6 sm:p-12 lg:p-14 shadow-2xl overflow-hidden flex flex-col justify-center">
                     {/* Internal Texture */}
                     <div className="absolute inset-0 bg-[radial-gradient(circle_at_2px_2px,rgba(255,255,255,0.02)_1px,transparent_0)] bg-[size:40px_40px] pointer-events-none" />
 
                     <div className="relative z-10 space-y-12">
                       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
-                        <div className="flex items-center gap-5">
-                          <div className="w-14 h-14 rounded-2xl bg-yellow-400 flex items-center justify-center text-black shadow-[0_0_30px_rgba(250,204,21,0.2)]">
+                        <div className="flex items-center gap-4 sm:gap-5">
+                          <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl bg-yellow-400 flex items-center justify-center text-black shadow-[0_0_30px_rgba(250,204,21,0.2)] shrink-0">
                             <MessageSquare size={24} />
                           </div>
                           <div className="space-y-1">
-                            <h2 className="text-3xl font-display font-black uppercase tracking-tighter text-white">
+                            <h2 className="text-2xl sm:text-3xl font-display font-black uppercase tracking-tighter text-white">
                               Get In Touch
                             </h2>
                             <div className="flex items-center gap-2">
                                <div className="h-1.5 w-1.5 rounded-full bg-yellow-400 animate-pulse" />
-                              <span className="text-xs font-mono text-zinc-400 uppercase tracking-widest font-black">
+                              <span className="text-[10px] sm:text-xs font-mono text-zinc-400 uppercase tracking-widest font-black">
                                 Response Status: Active
                               </span>
                             </div>
                           </div>
                         </div>
-                        {/* <div className="hidden md:flex flex-col items-end">
-                              <span className="text-[10px] font-mono text-zinc-600 uppercase tracking-widest font-black">Transmission_ID</span>
-                              <span className="text-sm font-mono text-white/40">NX_2026_ALPHA</span>
-                           </div> */}
                       </div>
 
                       <form
@@ -419,6 +455,17 @@ const Contact = () => {
 
                         {/* Submit Button */}
                         <div className="md:col-span-2 pt-4">
+                          {submitStatus && (
+                            <motion.div
+                              initial={{ opacity: 0, y: 10 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              className={`mb-6 p-4 rounded-xl text-center text-sm font-bold uppercase tracking-wider ${
+                                submitStatus.type === 'success' ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20' : 'bg-rose-500/10 text-rose-400 border border-rose-500/20'
+                              }`}
+                            >
+                              {submitStatus.message}
+                            </motion.div>
+                          )}
                           <button
                             type="submit"
                             disabled={isSubmitting}
@@ -462,31 +509,36 @@ const Contact = () => {
             <div className="lg:col-span-12 xl:col-span-5 space-y-8">
               {/* Office Context Image Overlay */}
               <ScrollReveal delay={0.4}>
-                <div className="relative h-60 md:h-72 rounded-[3rem] overflow-hidden border border-white/5 group">
+                <div className="relative h-56 sm:h-64 md:h-80 rounded-3xl sm:rounded-[3rem] overflow-hidden border border-white/5 group">
                   <img
                     src="/modern_office_tech_hq.png"
-                    alt="Nexcan Global HQ"
-                    className="w-full h-full object-cover brightness-90 group-hover:brightness-100 transition-all duration-1000 scale-110 group-hover:scale-100"
+                    alt={`${offices[0].city} Global HQ`}
+                    className="w-full h-full object-cover brightness-75 group-hover:brightness-90 transition-all duration-1000 scale-110 group-hover:scale-100"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#04060b] via-transparent to-transparent" />
-                  <div className="absolute bottom-8 left-8 right-8 flex justify-between items-end">
+                  {/* Bottom Vignette for Text Readability */}
+                  <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-[#04060b] to-transparent z-10" />
+                  
+                  <div className="absolute bottom-6 sm:bottom-10 left-6 sm:left-10 right-6 sm:right-10 flex justify-between items-end gap-4 z-20">
                      <div className="space-y-1">
-                      <p className="text-[11px] font-mono text-yellow-400 uppercase tracking-widest font-black">
+                      <p className="text-[10px] sm:text-[11px] font-mono text-yellow-400 uppercase tracking-[0.3em] font-black">
                         BASE_LOCATION
                       </p>
-                      <p className="text-2xl font-display font-black uppercase">
-                        Ahmedabad_Global_HQ
+                      <h3 className="text-xl sm:text-3xl font-display font-black uppercase text-white leading-tight">
+                        {offices[0].city}_HQ
+                      </h3>
+                      <p className="text-[10px] sm:text-xs font-mono text-zinc-400 uppercase tracking-widest font-black line-clamp-2 max-w-[250px]">
+                        {offices[0].address}
                       </p>
                     </div>
-                    <div className="w-12 h-12 rounded-full backdrop-blur-3xl border border-white/10 flex items-center justify-center">
-                      <MapPin size={20} className="text-yellow-400" />
+                    <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full backdrop-blur-3xl border border-white/10 flex items-center justify-center shrink-0 shadow-2xl">
+                      <MapPin size={24} className="text-yellow-400" />
                     </div>
                   </div>
                 </div>
               </ScrollReveal>
 
               {/* Direct Channels Grid */}
-              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-1 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-1 gap-4 sm:gap-6">
                 {[
                   {
                     icon: Mail,
@@ -502,15 +554,15 @@ const Contact = () => {
                   },
                 ].map((channel, i) => (
                   <ScrollReveal key={i} delay={0.5 + i * 0.1}>
-                    <div className="group p-8 rounded-[2.5rem] bg-white/[0.015] border border-white/5 hover:bg-white/[0.03] transition-all flex items-center gap-8">
-                      <div className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-yellow-400 group-hover:bg-yellow-400 group-hover:text-black transition-all">
-                        <channel.icon size={24} />
+                    <div className="group p-6 sm:p-8 rounded-[2rem] sm:rounded-[2.5rem] bg-white/[0.015] border border-white/5 hover:bg-white/[0.03] transition-all flex items-center gap-6 sm:gap-8">
+                      <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-yellow-400 group-hover:bg-yellow-400 group-hover:text-black transition-all shrink-0">
+                        <channel.icon size={20} />
                       </div>
                        <div className="space-y-1">
-                        <p className="text-[11px] font-mono text-zinc-400 uppercase tracking-widest font-black">
+                        <p className="text-[10px] sm:text-[11px] font-mono text-zinc-400 uppercase tracking-widest font-black">
                           {channel.label}
                         </p>
-                        <p className="text-xl font-display font-black uppercase text-white hover:text-yellow-400 transition-colors pointer-events-auto cursor-pointer">
+                        <p className="text-lg sm:text-xl font-display font-black uppercase text-white hover:text-yellow-400 transition-colors pointer-events-auto cursor-pointer leading-tight">
                           {channel.val}
                         </p>
                       </div>
@@ -591,12 +643,12 @@ const Contact = () => {
         </div>
       </section>
       {/* ── SOCIAL MATRIX STRIP ── */}
-      <section className="relative z-10 py-32 border-t border-white/5">
+      <section className="relative z-10 py-16 sm:py-32 border-t border-white/5">
         <div className="max-w-[1400px] mx-auto px-6 lg:px-12 text-center">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {offices.map((office, i) => (
               <ScrollReveal key={i} delay={i * 0.1}>
-                 <div className="p-8 rounded-[2.5rem] bg-white/[0.015] border border-white/5 hover:border-yellow-400/20 transition-all text-left group h-full">
+                 <div className="p-6 sm:p-8 rounded-3xl sm:rounded-[2.5rem] bg-white/[0.015] border border-white/5 hover:border-yellow-400/20 transition-all text-left group h-full">
                     <div className="flex justify-between items-start mb-6">
                       <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-yellow-400 group-hover:bg-yellow-400 group-hover:text-black transition-all">
                         <MapPin size={18} />
@@ -613,19 +665,19 @@ const Contact = () => {
             ))}
           </div>
 
-          <div className="mt-32">
-             <h4 className="text-xs font-mono text-zinc-400 uppercase tracking-[0.6em] font-black mb-16">
+          <div className="mt-20 sm:mt-32">
+             <h4 className="text-[10px] sm:text-xs font-mono text-zinc-400 uppercase tracking-[0.4em] sm:tracking-[0.6em] font-black mb-8 sm:mb-16">
                OPERATIONAL_HOURS
              </h4>
-             <div className="flex flex-wrap justify-center gap-12">
+             <div className="flex flex-wrap justify-center gap-8 sm:gap-12">
                 {[
                   { day: "Mon-Fri", hours: "9:00 AM – 7:00 PM" },
                   { day: "Saturday", hours: "10:00 AM – 5:00 PM" },
                   { day: "Sunday", hours: "Rest Day (Closed)" }
                 ].map((item, i) => (
                   <div key={i} className="space-y-2">
-                    <p className="text-xs font-mono text-zinc-400 uppercase tracking-widest font-black">{item.day}</p>
-                    <p className="text-lg font-display font-black text-white uppercase">{item.hours}</p>
+                    <p className="text-[10px] sm:text-xs font-mono text-zinc-400 uppercase tracking-widest font-black">{item.day}</p>
+                    <p className="text-base sm:text-lg font-display font-black text-white uppercase">{item.hours}</p>
                   </div>
                 ))}
              </div>

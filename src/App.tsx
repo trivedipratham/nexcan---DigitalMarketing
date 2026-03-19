@@ -17,6 +17,7 @@ import Pricing from "@/pages/Pricing";
 import Blog from "@/pages/Blog";
 import BlogPost from "@/pages/BlogPost";
 import Privacy from "@/pages/Privacy";
+import Terms from "@/pages/Terms";
 
 const queryClient = new QueryClient();
 
@@ -48,6 +49,7 @@ const AnimatedRoutes = () => {
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:id" element={<BlogPost />} />
           <Route path="/privacy" element={<Privacy />} />
+          <Route path="/terms" element={<Terms />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

@@ -18,6 +18,8 @@ const SmoothScroll = () => {
     });
     
     lenisRef.current = lenis;
+    // Expose globally so other components can stop/start scroll
+    (window as any).__lenis = lenis;
 
     function raf(time: number) {
       lenis.raf(time);
@@ -28,6 +30,7 @@ const SmoothScroll = () => {
 
     return () => {
       lenis.destroy();
+      (window as any).__lenis = null;
     };
   }, []);
 

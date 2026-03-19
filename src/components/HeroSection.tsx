@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowRight, ChevronDown } from "lucide-react";
 import DashboardMockup from "./DashboardMockup";
-
+import heroimg from "../../public/heroo.jpg"
 const ScrollBadge = () => (
   <div className="absolute bottom-16 left-8 md:bottom-24 md:left-12 w-20 h-20 md:w-28 md:h-28 hidden md:flex items-center justify-center">
     <div className="relative w-full h-full animate-[spin_8s_linear_infinite]">
@@ -93,7 +93,7 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center px-6 overflow-hidden pt-36 pb-32">
+    <section className="relative min-h-[90vh] md:min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 overflow-hidden pt-28 pb-20 md:pt-36 md:pb-32">
       {/* Background */}
       <div className="absolute inset-0 z-0 bg-[#0B0F19] overflow-hidden">
         {/* Cinematic Motion Background (Reliable Alternative to Video) */}
@@ -104,7 +104,7 @@ const HeroSection = () => {
           className="absolute inset-0"
         >
           <img
-            src="https://images.unsplash.com/photo-1451187530220-4e2bd78f7ad6?auto=format&fit=crop&q=80&w=1600"
+            src={heroimg}
             alt="Hero Background"
             className="w-full h-full object-cover filter grayscale"
           />
@@ -143,23 +143,23 @@ const HeroSection = () => {
 
       <div className="relative z-10 max-w-5xl mx-auto text-center w-full">
         <motion.h1
-          className="font-display font-bold text-3xl md:text-6xl lg:text-6xl leading-[1.15] tracking-tight mb-6 text-foreground"
+          className="font-display font-bold text-2xl sm:text-4xl md:text-5xl lg:text-6xl leading-[1.1] tracking-tight mb-6 text-foreground"
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
           Digital Growth{" "}
-          <span className="text-yellow-400 font-serif">Happens Here</span>
+          <span className="text-yellow-400 font-serif italic">Happens Here</span>
         </motion.h1>
 
         <motion.div
-          className="text-muted-foreground text-lg md:text-2xl font-body mb-10 flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2"
+          className="text-muted-foreground text-base sm:text-lg md:text-xl lg:text-2xl font-body mb-10 flex flex-col items-center justify-center gap-2"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <span>Nexcan is a results-focused digital marketing agency that</span>
-          <span className="font-serif relative inline-flex items-center justify-center sm:justify-start min-w-[200px] sm:min-w-[240px] text-foreground">
+          <span className="max-w-[90%] sm:max-w-none">Nexcan is a results-focused digital marketing agency that</span>
+          <span className="font-serif relative inline-flex items-center justify-center min-w-[200px] text-foreground">
             <AnimatePresence mode="wait">
               <motion.span
                 key={words[index]}
@@ -173,7 +173,7 @@ const HeroSection = () => {
               </motion.span>
             </AnimatePresence>
             <svg
-              className="absolute -bottom-3 left-1/2 sm:left-0 -translate-x-1/2 sm:translate-x-0 w-[110%] sm:w-[240px]"
+              className="absolute -bottom-3 left-1/2 -translate-x-1/2 w-[120%] max-w-[300px]"
               viewBox="0 0 300 18"
               fill="none"
               preserveAspectRatio="none"

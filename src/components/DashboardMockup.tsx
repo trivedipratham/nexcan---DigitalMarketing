@@ -1,24 +1,19 @@
 import { motion } from "framer-motion";
 import dashboard from "../../public/192044-891655420_medium.mp4";
 const DashboardMockup = () => (
-  <div className="bg-[#04060b] rounded-[2rem] border border-white/5 w-full max-w-5xl mx-auto overflow-hidden shadow-[0_0_100px_rgba(0,0,0,0.8)] relative group">
+  <div className="bg-black rounded-[2rem] border border-white/5 w-full max-w-5xl mx-auto overflow-hidden shadow-[0_0_100px_rgba(0,0,0,0.8)] relative group">
     {/* Browser Bar */}
-    <div className="flex items-center justify-between px-6 py-4 bg-white/[0.02] border-b border-white/5 relative z-30">
-      <div className="flex items-center gap-2">
-        <div className="w-2.5 h-2.5 rounded-full bg-red-500/50" />
-        <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/50" />
-        <div className="w-2.5 h-2.5 rounded-full bg-green-500/50" />
+    <div className="flex items-center justify-between px-4 sm:px-6 py-3 sm:py-4 bg-white/[0.02] border-b border-white/5 relative z-30">
+      <div className="flex items-center gap-1.5 sm:gap-2">
+        <div className="w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full bg-red-500/50" />
+        <div className="w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full bg-yellow-500/50" />
+        <div className="w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full bg-green-500/50" />
       </div>
-      {/* <div className="bg-white/[0.03] px-10 py-1 rounded-full border border-white/5">
-        <span className="text-[10px] text-zinc-500 font-mono tracking-widest uppercase">
-          studio.nexcandigital.com
-        </span>
-      </div> */}
-      <div className="w-12 h-1 bg-white/5 rounded-full" />
+      <div className="w-8 sm:w-12 h-1 bg-white/5 rounded-full" />
     </div>
 
     {/* Video Engine & Content */}
-    <div className="relative aspect-video w-full overflow-hidden">
+    <div className="relative aspect-[4/3] sm:aspect-video w-full overflow-hidden">
       {/* Cinematic Tech Background (Reliable Alternative to Video) */}
       <div className="absolute inset-0 w-full h-full overflow-hidden">
         <motion.video
@@ -51,10 +46,10 @@ const DashboardMockup = () => (
       />
 
       {/* Overlaid Data Modules */}
-      <div className="absolute inset-0 z-30 flex flex-col p-6 lg:p-12">
+      <div className="absolute inset-0 z-30 flex flex-col p-4 sm:p-6 lg:p-12">
         {/* Main Stats Grid - Clears the center for the video */}
-        <div className="flex-1 flex items-center justify-center pt-10">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 lg:gap-x-[45%] gap-y-6 lg:gap-y-8 w-full">
+        <div className="flex-1 flex items-center justify-center md:pt-10">
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-2 sm:gap-6 md:gap-x-12 lg:gap-x-[35%] sm:gap-y-6 lg:gap-y-8 w-full max-w-4xl">
             {[
               {
                 label: "Editing Precision",
@@ -80,13 +75,13 @@ const DashboardMockup = () => (
                 initial={{ opacity: 0, scale: 0.9, x: i % 2 === 0 ? -30 : 30 }}
                 whileInView={{ opacity: 1, scale: 1, x: 0 }}
                 transition={{ delay: 0.1 * i, duration: 0.8 }}
-                className={`bg-white/5 backdrop-blur-2xl border border-white/10 p-5 lg:p-7 rounded-[2.5rem] group/card hover:bg-white/10 hover:border-white/20 transition-all duration-500 shadow-2xl overflow-hidden relative ${i === 2 ? "md:col-start-1" : ""}`}
+                className={`bg-white/5 backdrop-blur-xl border border-white/10 p-3 sm:p-5 lg:p-7 rounded-2xl sm:rounded-[2.5rem] group/card hover:bg-white/10 hover:border-white/20 transition-all duration-500 shadow-2xl overflow-hidden relative ${i === 2 ? "col-span-2 md:col-span-1 md:col-start-1" : ""}`}
               >
-                <p className="text-[9px] md:text-xs text-zinc-500 uppercase tracking-[0.2em] font-black mb-3">
+                <p className="text-[4px] md:text-xs text-zinc-500 uppercase tracking-[0.2em] font-black mb-3">
                   {stat.label}
                 </p>
                 <h4
-                  className={`text-2xl md:text-3xl lg:text-4xl font-display font-black tracking-tighter ${stat.color} leading-none mb-4`}
+                  className={`text-lg sm:text-2xl md:text-3xl lg:text-4xl font-display font-black tracking-tighter ${stat.color} leading-none mb-2 sm:mb-4`}
                 >
                   {stat.value}
                 </h4>
@@ -103,10 +98,10 @@ const DashboardMockup = () => (
 
         {/* Bottom Data Bar */}
         <div className="flex justify-between items-end pb-2">
-          <div className="space-y-4">
-            <div className="flex items-center gap-4 mt-4">
-              <div className="h-0.5 w-12 bg-yellow-400" />
-              <p className="text-white font-display text-lg lg:text-xl font-bold tracking-tight uppercase opacity-80">
+          <div className="space-y-2 sm:space-y-4">
+            <div className="flex items-center gap-2 sm:gap-4 mt-2 sm:mt-4">
+              <div className="h-px sm:h-0.5 w-8 sm:w-12 bg-yellow-400" />
+              <p className="text-white font-display text-sm sm:text-lg lg:text-xl font-bold tracking-tight uppercase opacity-80">
                 Advanced Reel Production
               </p>
             </div>

@@ -113,8 +113,8 @@ const ProcessSection = () => {
             <span className="text-white/80 text-xs font-mono tracking-[0.5em] uppercase">Architecture v4.0</span>
           </motion.div>
 
-          <h2 className="text-6xl md:text-8xl lg:text-9xl font-display font-black text-white tracking-tighter uppercase leading-none select-none pr-12">
-            WORKFLOW <br />
+          <h2 className="text-4xl sm:text-6xl md:text-8xl lg:text-9xl font-display font-black text-white tracking-tighter uppercase leading-[0.9] md:leading-none select-none md:pr-12">
+            WORKFLOW <br className="hidden sm:block" />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-zinc-800 via-zinc-400 to-zinc-800">SIMPLIFIED.</span>
           </h2>
         </div>
@@ -143,13 +143,13 @@ const ProcessSection = () => {
                   className={`relative group ${i % 2 !== 0 ? 'lg:translate-y-24' : ''}`}
                 >
                   {/* Step Card Interface */}
-                  <div className="relative bg-white/[0.02] backdrop-blur-3xl border border-white/10 rounded-[3rem] p-8 md:p-12 overflow-hidden group/card shadow-2xl hover:bg-white/[0.04] transition-all duration-700 h-full">
+                  <div className="relative bg-white/[0.02] backdrop-blur-3xl border border-white/10 rounded-3xl md:rounded-[3rem] p-6 sm:p-8 md:p-12 overflow-hidden group/card shadow-2xl hover:bg-white/[0.04] transition-all duration-700 h-full">
                     
                     {/* BARS POP OUT - Interactive 3D Metric Bars */}
-                    <div className="absolute top-0 right-0 p-6 flex flex-col gap-2 transition-transform duration-500 z-20">
+                    <div className="absolute top-0 right-0 p-4 sm:p-6 flex flex-col gap-1 sm:gap-2 transition-transform duration-500 z-20">
                       {[60, 90, 45].map((h, bi) => (
-                        <div key={bi} className="flex items-center gap-3 justify-end group/bar">
-                          <div className="w-16 md:w-20 h-1.5 bg-white/10 rounded-full overflow-hidden relative">
+                        <div key={bi} className="flex items-center gap-2 sm:gap-3 justify-end group/bar">
+                          <div className="w-12 sm:w-16 md:w-20 h-1 sm:h-1.5 bg-white/10 rounded-full overflow-hidden relative">
                             <motion.div 
                               initial={{ width: 0 }}
                               whileInView={{ width: `${h}%` }}
@@ -157,21 +157,21 @@ const ProcessSection = () => {
                               transition={{ duration: 1.5, delay: 0.5 + (bi * 0.2) }}
                             />
                           </div>
-                          <div className={`w-2 h-2 rounded-full bg-gradient-to-br ${step.color} opacity-0 group-hover/card:opacity-100 transition-opacity`} />
+                          <div className={`w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-gradient-to-br ${step.color} opacity-0 group-hover/card:opacity-100 transition-opacity`} />
                         </div>
                       ))}
                     </div>
 
                     <div className="relative z-10 space-y-8">
                       {/* Icon & Title Group */}
-                      <div className="space-y-4 pr-12 md:pr-0">
-                        <div className="flex flex-col md:flex-row md:items-center gap-4">
-                          <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${step.color} flex items-center justify-center text-[#0B0F19] shadow-lg transition-transform duration-500 shrink-0`}>
-                            <Icon size={28} strokeWidth={2.5} />
+                      <div className="space-y-4 pr-16 md:pr-0">
+                        <div className="flex flex-col sm:flex-row sm:items-center gap-4">
+                          <div className={`w-12 h-12 md:w-14 md:h-14 rounded-xl md:rounded-2xl bg-gradient-to-br ${step.color} flex items-center justify-center text-[#0B0F19] shadow-lg transition-transform duration-500 shrink-0`}>
+                            <Icon size={24} className="md:size-[28px]" strokeWidth={2.5} />
                           </div>
                           <div>
-                            <p className="text-[10px] md:text-xs font-mono text-zinc-400 uppercase tracking-widest">{step.subtitle}</p>
-                            <h3 className="text-2xl md:text-3xl font-display font-bold text-white tracking-tight">{step.title}</h3>
+                            <p className="text-[9px] md:text-xs font-mono text-zinc-400 uppercase tracking-widest">{step.subtitle}</p>
+                            <h3 className="text-xl md:text-3xl font-display font-bold text-white tracking-tight">{step.title}</h3>
                           </div>
                         </div>
                       </div>
@@ -211,11 +211,11 @@ const ProcessSection = () => {
         </div>
 
         {/* Cinematic Watermark */}
-        <div className="mt-8 relative h-40 overflow-hidden pointer-events-none select-none opacity-20">
+        <div className="mt-8 relative h-24 md:h-40 overflow-hidden pointer-events-none select-none opacity-20">
           <motion.div 
              animate={{ x: ["-100%", "100%"] }}
              transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-             className="text-[150px] font-black text-transparent stroke-white/10 whitespace-nowrap"
+             className="text-[80px] md:text-[150px] font-black text-transparent stroke-white/10 whitespace-nowrap"
              style={{ WebkitTextStroke: "1px rgba(255,255,255,0.05)" }}
           >
             NEXCAN DIGITAL WORKFLOW NEXCAN DIGITAL WORKFLOW

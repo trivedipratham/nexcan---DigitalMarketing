@@ -158,28 +158,28 @@ const PricingSection = () => {
             <Star size={14} className="text-yellow-400 fill-yellow-400 animate-pulse" />
             <span className="text-yellow-400 text-[10px] font-mono uppercase tracking-[0.4em]">Price List</span>
           </div>
-          <h2 className="text-5xl md:text-8xl font-display font-bold text-white tracking-tighter uppercase leading-none mb-8">
-            Our <br />
+          <h2 className="text-4xl sm:text-6xl md:text-8xl font-display font-bold text-white tracking-tighter uppercase leading-[0.9] md:leading-none mb-8">
+            Our <br className="hidden sm:block" />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-zinc-800 via-zinc-200 to-zinc-800">Plans.</span>
           </h2>
         </motion.div>
 
         {/* ── CATEGORY TABS ── */}
-        <div className="flex flex-wrap justify-center gap-4 mb-10 w-full mx-auto">
+        <div className="grid grid-cols-2 sm:flex sm:flex-wrap justify-center gap-3 md:gap-4 mb-10 w-full mx-auto px-2">
           {categories.map((cat) => (
             <button
               key={cat.id}
               onClick={() => setActiveTab(cat.id)}
               className={`
-                flex items-center gap-3 px-8 py-4 rounded-2xl font-display text-xs font-bold uppercase tracking-widest transition-all duration-300
+                flex items-center justify-center gap-2 md:gap-3 px-4 sm:px-8 py-3 md:py-4 rounded-xl md:rounded-2xl font-display text-[10px] md:text-xs font-bold uppercase tracking-widest transition-all duration-300
                 ${activeTab === cat.id 
                   ? "bg-yellow-400 text-black shadow-lg shadow-yellow-400/20" 
                   : "bg-white/5 text-zinc-500 border border-white/5 hover:bg-white/10"
                 }
               `}
             >
-              <cat.icon size={16} />
-              {cat.label}
+              <cat.icon size={14} className="md:size-[16px]" />
+              <span className="truncate">{cat.label}</span>
             </button>
           ))}
         </div>
@@ -198,25 +198,25 @@ const PricingSection = () => {
               {pricingData[activeTab].map((plan, i) => (
                 <div key={i} className="relative group flex flex-col h-full">
                   <div className={`
-                    relative h-full flex flex-col rounded-[2.5rem] p-8 md:p-12 transition-all duration-500 overflow-hidden
+                    relative h-full flex flex-col rounded-3xl md:rounded-[2.5rem] p-6 sm:p-10 md:p-12 transition-all duration-500 overflow-hidden
                     ${plan.highlighted 
                       ? "bg-white/[0.04] backdrop-blur-3xl border-2 border-yellow-400/40 shadow-[0_0_50px_rgba(250,204,21,0.1)] z-20" 
                       : "bg-white/[0.02] backdrop-blur-xl border border-white/10 hover:border-white/20 z-10"
                     }
                   `}>
-                    <header className="mb-10">
+                    <header className="mb-8 md:mb-10">
                       <div className="flex items-center justify-between mb-2">
-                         <h3 className="text-2xl font-display font-bold text-white tracking-tight">{plan.name}</h3>
+                         <h3 className="text-xl md:text-2xl font-display font-bold text-white tracking-tight">{plan.name}</h3>
                          {plan.highlighted && (
-                           <span className="bg-yellow-400 text-black text-[9px] font-black uppercase px-3 py-1 rounded-full tracking-widest">Best Choice</span>
+                           <span className="bg-yellow-400 text-black text-[8px] md:text-[9px] font-black uppercase px-2 md:px-3 py-1 rounded-full tracking-widest whitespace-nowrap">Best Choice</span>
                          )}
                       </div>
-                      <p className="text-zinc-500 text-[13px] leading-relaxed mb-6 h-12">
+                      <p className="text-zinc-500 text-[12px] md:text-[13px] leading-relaxed mb-6 h-auto md:h-12">
                         {plan.description}
                       </p>
                       <div className="flex items-baseline gap-2">
-                        <span className="text-5xl font-display font-black text-white tracking-tighter">{plan.price}</span>
-                        <span className="text-zinc-500 text-xs font-medium uppercase tracking-widest">/ Month</span>
+                        <span className="text-4xl md:text-5xl font-display font-black text-white tracking-tighter">{plan.price}</span>
+                        <span className="text-zinc-500 text-[10px] md:text-xs font-medium uppercase tracking-widest whitespace-nowrap">/ Month</span>
                       </div>
                     </header>
 
@@ -258,22 +258,22 @@ const PricingSection = () => {
            <motion.div 
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            className="mt-20 max-w-4xl mx-auto p-12 rounded-[3.5rem] bg-gradient-to-br from-yellow-400/10 to-transparent border border-yellow-400/20 text-center relative overflow-hidden group"
+            className="mt-16 md:mt-20 max-w-4xl mx-auto p-6 sm:p-12 rounded-3xl sm:rounded-[3.5rem] bg-gradient-to-br from-yellow-400/10 to-transparent border border-yellow-400/20 text-center relative overflow-hidden group"
            >
               <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-[0.03]" />
               <div className="relative z-10 flex flex-col items-center gap-6">
                  <div className="w-16 h-16 rounded-2xl bg-yellow-400 text-black flex items-center justify-center shadow-2xl">
                     <Star size={28} />
                  </div>
-                 <div className="space-y-2">
-                    <h3 className="text-3xl font-display font-black text-white uppercase tracking-tighter">Marketing Strategy Consultation</h3>
-                    <p className="text-zinc-400 font-light">One-on-one session with our marketing experts to help your business grow.</p>
+                  <div className="space-y-2">
+                    <h3 className="text-2xl md:text-3xl font-display font-black text-white uppercase tracking-tighter">Marketing Strategy Consultation</h3>
+                    <p className="text-zinc-400 font-light text-sm md:text-base">One-on-one session with our marketing experts to help your business grow.</p>
                  </div>
                  <div className="flex items-baseline gap-2">
-                    <span className="text-5xl font-display font-black text-yellow-400">₹3,000</span>
-                    <span className="text-zinc-600 font-mono text-xs uppercase tracking-widest">/ Session</span>
+                    <span className="text-4xl md:text-5xl font-display font-black text-yellow-400">₹3,000</span>
+                    <span className="text-zinc-600 font-mono text-[10px] md:text-xs uppercase tracking-widest">/ Session</span>
                  </div>
-                 <Link to="/contact?plan=Marketing%20Strategy%20Consultation" className="px-10 py-5 bg-white text-black font-display font-black text-xs uppercase tracking-[0.4em] rounded-2xl hover:bg-yellow-400 transition-colors">Book Session</Link>
+                 <Link to="/contact?plan=Marketing%20Strategy%20Consultation" className="w-full sm:w-auto px-10 py-4 sm:py-5 bg-white text-black font-display font-black text-[10px] sm:text-xs uppercase tracking-[0.4em] rounded-2xl hover:bg-yellow-400 transition-colors">Book Session</Link>
               </div>
            </motion.div>
         )}

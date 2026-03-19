@@ -43,7 +43,7 @@ const TestimonialsSection = () => {
       <div className="absolute inset-0 z-0 pointer-events-none opacity-20">
         <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_50%,_rgba(109,40,217,0.1),transparent_70%)]" />
         <motion.div 
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[30vw] font-display font-black text-white/[0.03] tracking-tighter uppercase leading-none select-none whitespace-nowrap"
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-40 md:-translate-y-1/2 text-[40vw] md:text-[30vw] font-display font-black text-white/[0.03] tracking-tighter uppercase leading-none select-none whitespace-nowrap"
           animate={{ x: ["-10%", "10%"] }}
           transition={{ duration: 20, repeat: Infinity, repeatType: "mirror", ease: "linear" }}
         >
@@ -66,8 +66,8 @@ const TestimonialsSection = () => {
                 <span className="text-yellow-400 text-xs font-mono uppercase tracking-[0.4em]">Validation Bureau</span>
               </motion.div>
               
-              <h2 className="text-6xl md:text-7xl font-display font-bold text-white tracking-tighter leading-none uppercase">
-                Client <br />
+              <h2 className="text-4xl sm:text-6xl md:text-7xl font-display font-bold text-white tracking-tighter leading-none uppercase">
+                Client <br className="hidden sm:block" />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-yellow-600">Success.</span>
               </h2>
             </div>
@@ -118,39 +118,39 @@ const TestimonialsSection = () => {
                   <span className="text-[200px] font-black text-white/[0.03] leading-none">“</span>
                 </div>
 
-                <div className="relative bg-white/[0.03] backdrop-blur-3xl border border-white/10 rounded-[3rem] p-8 md:p-12 lg:p-14 shadow-2xl overflow-hidden group min-h-[400px] md:min-h-[420px] lg:min-h-[450px] flex flex-col">
+                <div className="relative bg-white/[0.03] backdrop-blur-3xl border border-white/10 rounded-3xl md:rounded-[3rem] p-6 sm:p-10 md:p-12 lg:p-14 shadow-2xl overflow-hidden group min-h-[350px] md:min-h-[420px] lg:min-h-[450px] flex flex-col">
                   {/* Internal Glow Follow (Simulated) */}
                   <div className="absolute -top-24 -right-24 w-64 h-64 bg-yellow-400/5 blur-[100px] rounded-full group-hover:bg-yellow-400/10 transition-colors duration-1000" />
                   
                   <div className="relative z-10 flex flex-col h-full justify-between flex-1">
-                    <p className="text-xl md:text-2xl lg:text-3xl font-display font-bold text-white leading-[1.4] tracking-tight mb-8">
+                    <p className="text-lg sm:text-2xl lg:text-3xl font-display font-bold text-white leading-[1.4] tracking-tight mb-6 md:mb-8">
                       {testimonials[index].quote}
                     </p>
 
-                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-8 mt-auto">
-                      <div className="flex items-center gap-5">
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 sm:gap-8 mt-auto">
+                      <div className="flex items-center gap-4 md:gap-5">
                         <div className="relative">
-                          <div className="absolute inset-0 bg-yellow-400 blur-md opacity-20 rounded-2xl" />
+                          <div className="absolute inset-0 bg-yellow-400 blur-md opacity-20 rounded-xl md:rounded-2xl" />
                           <img 
                             src={testimonials[index].image} 
                             alt={testimonials[index].name} 
-                            className="w-14 h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 rounded-2xl object-cover border border-white/20 relative z-10"
+                            className="w-12 h-12 sm:w-16 sm:h-16 lg:w-20 lg:h-20 rounded-xl md:rounded-2xl object-cover border border-white/20 relative z-10"
                           />
                         </div>
                         <div>
-                          <h4 className="text-lg md:text-xl font-display font-bold text-white tracking-tight mb-0.5">
+                          <h4 className="text-base md:text-xl font-display font-bold text-white tracking-tight mb-0.5">
                             {testimonials[index].name}
                           </h4>
-                          <p className="text-[11px] font-mono text-yellow-400/80 uppercase tracking-widest">
+                          <p className="text-[9px] md:text-[11px] font-mono text-yellow-400/80 uppercase tracking-widest">
                             {testimonials[index].role}
                           </p>
                         </div>
                       </div>
 
                       {/* Verified Impact Badge */}
-                      <div className="px-6 py-3 rounded-2xl bg-white/5 border border-white/10 flex flex-col items-center justify-center min-w-[140px] self-start md:self-center">
-                        <span className="text-[10px] font-mono text-zinc-400 uppercase tracking-widest mb-0.5 font-bold">Verified Impact</span>
-                        <span className="text-xl font-display font-black text-white">{testimonials[index].impact}</span>
+                      <div className="px-4 py-2 md:px-6 md:py-3 rounded-xl md:rounded-2xl bg-white/5 border border-white/10 flex flex-col items-center justify-center min-w-[120px] md:min-w-[140px] self-start sm:self-center">
+                        <span className="text-[8px] md:text-[10px] font-mono text-zinc-400 uppercase tracking-widest mb-0.5 font-bold">Verified Impact</span>
+                        <span className="text-lg md:text-xl font-display font-black text-white">{testimonials[index].impact}</span>
                       </div>
                     </div>
                   </div>
@@ -159,31 +159,31 @@ const TestimonialsSection = () => {
             </AnimatePresence>
 
             {/* Professional Navigation Interface */}
-            <div className="mt-12 flex items-center justify-between bg-white/[0.02] border border-white/5 rounded-3xl p-4 md:p-6 backdrop-blur-xl">
+            <div className="mt-8 md:mt-12 flex flex-col md:flex-row items-center justify-between bg-white/[0.02] border border-white/5 rounded-3xl p-4 md:p-6 backdrop-blur-xl gap-6 md:gap-0">
               <div className="flex gap-4">
                 <button 
                   onClick={prev}
-                  className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-yellow-400 hover:text-black hover:border-transparent transition-all duration-500"
+                  className="w-10 h-10 md:w-12 md:h-12 rounded-xl md:rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-yellow-400 hover:text-black hover:border-transparent transition-all duration-500"
                 >
                   <ChevronLeft size={20} />
                 </button>
                 <button 
                   onClick={next}
-                  className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-yellow-400 hover:text-black hover:border-transparent transition-all duration-500"
+                  className="w-10 h-10 md:w-12 md:h-12 rounded-xl md:rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-yellow-400 hover:text-black hover:border-transparent transition-all duration-500"
                 >
                   <ChevronRight size={20} />
                 </button>
               </div>
 
               {/* Orbital Progress Indicators */}
-              <div className="flex gap-3 px-8">
+              <div className="flex gap-2 sm:gap-3 px-4 sm:px-8">
                 {testimonials.map((_, i) => (
                   <button
                     key={i}
                     onClick={() => setIndex(i)}
                     className="relative group"
                   >
-                    <div className="w-12 h-1 rounded-full overflow-hidden bg-white/5 group-hover:bg-white/10 transition-colors">
+                    <div className="w-8 sm:w-12 h-1 rounded-full overflow-hidden bg-white/5 group-hover:bg-white/10 transition-colors">
                       <motion.div 
                         animate={{ width: i === index ? "100%" : "0%" }}
                         className="h-full bg-yellow-400 shadow-[0_0_15px_rgba(250,204,21,0.6)]"
@@ -193,7 +193,7 @@ const TestimonialsSection = () => {
                 ))}
               </div>
 
-              <div className="hidden md:flex items-center gap-2 text-xs font-mono text-zinc-400 uppercase tracking-[0.3em] font-bold">
+              <div className="flex items-center gap-2 text-[10px] md:text-xs font-mono text-zinc-400 uppercase tracking-[0.3em] font-bold">
                  Spotlight <span className="text-yellow-400">0{index + 1}</span> / 0{testimonials.length}
               </div>
             </div>

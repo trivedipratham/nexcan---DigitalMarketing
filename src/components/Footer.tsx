@@ -34,16 +34,16 @@ const Footer = () => {
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-yellow-400/20 to-transparent z-1" />
 
       <div className="section-container relative z-10 px-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-14 mb-10">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-12 md:gap-10 lg:gap-14 mb-16">
           {/* Brand Identity */}
-          <div className="space-y-6">
-            <div>
+          <div className="col-span-2 lg:col-span-1 space-y-6 md:space-y-8">
+            <div className="space-y-6">
               <img
                 src="/NEXCAN%20LOGO%20(1).png"
                 alt="Nexcan Logo"
-                className="h-24 md:h-32 w-auto object-contain brightness-0 invert opacity-80 hover:opacity-100 transition-opacity duration-700"
+                className="h-20 sm:h-24 md:h-32 w-auto object-contain brightness-0 invert opacity-80 hover:opacity-100 transition-opacity duration-700"
               />
-              <p className="text-zinc-300 text-base font-body leading-relaxed max-w-sm">
+              <p className="text-zinc-400 text-sm sm:text-base font-body leading-relaxed max-w-sm">
                 A top digital marketing agency built for fast growth. We help
                 businesses lead their market with results that matter.
               </p>
@@ -69,7 +69,7 @@ const Footer = () => {
 
           {/* Core Navigation */}
           <div className="space-y-6">
-            <p className="text-white font-mono text-sm uppercase tracking-[0.4em] font-bold">
+            <p className="text-white font-mono text-[10px] md:text-sm uppercase tracking-[0.4em] font-bold border-b border-white/5 pb-2">
               Menu
             </p>
             <nav className="flex flex-col gap-4">
@@ -82,7 +82,7 @@ const Footer = () => {
                 <Link
                   key={l.path}
                   to={l.path}
-                  className="group flex items-center gap-3 text-zinc-400 hover:text-white transition-colors text-base font-medium"
+                  className="group flex items-center gap-2 md:gap-3 text-zinc-400 hover:text-white transition-colors text-sm sm:text-base font-medium"
                 >
                   <div className="w-1.5 h-1.5 rounded-full bg-yellow-400 opacity-0 group-hover:opacity-100 transition-opacity" />
                   {l.label}
@@ -93,7 +93,7 @@ const Footer = () => {
 
           {/* Market Insights */}
           <div className="space-y-6">
-            <p className="text-white font-mono text-sm uppercase tracking-[0.4em] font-bold">
+            <p className="text-white font-mono text-[10px] md:text-sm uppercase tracking-[0.4em] font-bold border-b border-white/5 pb-2">
               Updates
             </p>
             <nav className="flex flex-col gap-4">
@@ -106,7 +106,7 @@ const Footer = () => {
                 <Link
                   key={l.label}
                   to={l.path}
-                  className="group flex items-center gap-3 text-zinc-400 hover:text-white transition-colors text-base font-medium"
+                  className="group flex items-center gap-2 md:gap-3 text-zinc-400 hover:text-white transition-colors text-sm sm:text-base font-medium"
                 >
                   <div className="w-1.5 h-1.5 rounded-full bg-zinc-700 group-hover:bg-yellow-400 transition-colors" />
                   {l.label}
@@ -116,8 +116,8 @@ const Footer = () => {
           </div>
 
           {/* Global Reach */}
-          <div className="space-y-6">
-            <p className="text-white font-mono text-sm uppercase tracking-[0.4em] font-bold">
+          <div className="col-span-2 lg:col-span-1 space-y-6">
+            <p className="text-white font-mono text-[10px] md:text-sm uppercase tracking-[0.4em] font-bold border-b border-white/5 pb-2">
               Connect
             </p>
             <ul className="space-y-4">
@@ -128,12 +128,12 @@ const Footer = () => {
               ].map((item, i) => (
                 <li
                   key={i}
-                  className="flex items-start gap-4 text-zinc-300 transition-all hover:text-white cursor-default"
+                  className="flex items-start gap-3 md:gap-4 text-zinc-300 transition-all hover:text-white cursor-default"
                 >
-                  <div className="mt-1 w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center text-yellow-400/80">
-                    <item.icon size={16} />
+                  <div className="mt-1 w-7 h-7 md:w-8 md:h-8 rounded-lg bg-white/5 flex items-center justify-center text-yellow-400/80 shrink-0">
+                    <item.icon size={14} />
                   </div>
-                  <span className="text-base font-medium leading-relaxed">
+                  <span className="text-sm sm:text-base font-medium leading-relaxed">
                     {item.text}
                   </span>
                 </li>
@@ -143,13 +143,13 @@ const Footer = () => {
         </div>
 
         {/* High-Tech Display Panel & Emerging Watermark */}
-        <div className="relative mb-[-3%] pointer-events-none select-none flex flex-col items-center">
+        <div className="relative mb-[-3%] md:mb-[-1.5%] pointer-events-none select-none flex flex-col items-center">
           {/* Static Submerged Text Container */}
           <div className="relative overflow-visible pb-4">
             <h2
-              className="text-[12vw] font-display font-black italic text-white/[0.10] tracking-[0.4em] leading-none text-center uppercase whitespace-nowrap relative z-10 scale-y-[0.95]"
+              className="text-[17vw] md:text-[12vw] font-display font-black italic text-white/[0.10] tracking-[0.2em] md:tracking-[0.4em] leading-none text-center uppercase whitespace-nowrap relative z-10 scale-y-[0.95]"
               style={{
-                WebkitTextStroke: "1.5px rgba(253, 251, 133, 0)",
+                WebkitTextStroke: "1px rgba(253, 251, 133, 0)",
                 maskImage:
                   "linear-gradient(to bottom, white 40%, rgba(143, 29, 29, 0.54) 50%, transparent 90%)",
                 WebkitMaskImage:
@@ -159,7 +159,7 @@ const Footer = () => {
               NEXCAN
             </h2>
 
-            {/* Light Rays / Projection Beams (Faster, pulsed static) */}
+            {/* Light Rays / Projection Beams */}
             <div className="absolute inset-0 z-0 flex justify-center opacity-40">
               {[...Array(6)].map((_, i) => (
                 <div
@@ -171,10 +171,10 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Underglow Reflection from the Panel */}
+          {/* Underglow Reflection */}
           <div className="absolute bottom-[-10px] left-1/2 -translate-x-1/2 h-32 w-[90%] bg-yellow-400/5 blur-[120px] rounded-full z-0" />
 
-          {/* THICK SMOKE CLOUD (Matching reference image) */}
+          {/* Smoke Clouds */}
           <div className="absolute inset-0 flex justify-center items-center pointer-events-none overflow-visible z-30">
             {[...Array(20)].map((_, i) => (
               <motion.div
@@ -200,7 +200,7 @@ const Footer = () => {
               />
             ))}
 
-            {/* Kinetic Data Particles (Rising Nodes - KEPT) */}
+            {/* Kinetic Data Particles */}
             {[...Array(15)].map((_, i) => (
               <motion.div
                 key={`p-${i}`}
@@ -227,20 +227,20 @@ const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-6">
-          <p className="text-zinc-400 font-mono text-xs uppercase tracking-[0.2em]">
+        <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-6">
+          <p className="text-zinc-400 font-mono text-[10px] md:text-xs uppercase tracking-[0.2em]">
             © {currentYear} Nexcan. Built for Success.
           </p>
           <div className="flex gap-8">
             <Link
-              to="#"
-              className="text-zinc-400 font-mono text-xs uppercase tracking-widest hover:text-white transition-colors"
+              to="/terms"
+              className="text-zinc-400 font-mono text-[10px] md:text-xs uppercase tracking-widest hover:text-white transition-colors"
             >
               Terms
             </Link>
             <Link
-              to="/Privacy"
-              className="text-zinc-400 font-mono text-xs uppercase tracking-widest hover:text-white transition-colors"
+              to="/privacy"
+              className="text-zinc-400 font-mono text-[10px] md:text-xs uppercase tracking-widest hover:text-white transition-colors"
             >
               Privacy
             </Link>
